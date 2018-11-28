@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="自定义购物车加减框" />
+
+    <com.izk.addorsubdemo.AddOrSubLayout
+        android:id="@+id/add_or_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        app:btn_add_color="#a97bd8"
+        app:btn_sub_color="#a97bd8"
+        app:tv_color="#62d628"
+        app:tv_max_num="8"
+        app:tv_min_num="2"
+        app:tv_num="2" />
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<resources>
+
+    <!--这是为了区分不同分辨率添加的，针对不同分辨率加载不同的宽高-->
+    <dimen name="ware_grid_img_width">80dp</dimen>
+    <dimen name="ware_grid_img_height">80dp</dimen>
+    <dimen name="category_layout_width">80dp</dimen>
+
+</resources>

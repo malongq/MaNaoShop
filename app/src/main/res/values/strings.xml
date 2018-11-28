@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">马龙--商城</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="home">主页</string>
+    <string name="hot">热卖</string>
+    <string name="catagory">分类</string>
+    <string name="cart">购物车</string>
+    <string name="mine">我的</string>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AddOrSub">
+
+        <attr name="btn_add_color" format="reference|color"/><!--增加按钮背景颜色-->
+
+        <attr name="tv_color" format="reference|color"/><!--购买数量背景颜色-->
+        <attr name="tv_num" format="reference|integer"/><!--购买数量默认值-->
+        <attr name="tv_min_num" format="reference|integer"/><!--购买数量最小值-->
+        <attr name="tv_max_num" format="reference|integer"/><!--购买数量最大值-->
+
+        <attr name="btn_sub_color" format="reference|color"/><!--减少按钮背景颜色-->
+
+    </declare-styleable>
+</resources>
