@@ -1,6 +1,5 @@
 package com.manao.manaoshop.adapter;
 
-import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +18,9 @@ import java.util.List;
  * Created by Malong
  * on 18/11/14.
  * 热卖adapter
+ * 已经有  HotAdapterNew  类
  */
+@Deprecated
 public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> {
 
     private List<Wares> mDatas;

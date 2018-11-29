@@ -1,8 +1,11 @@
 package com.manao.manaoshop.weiget;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -10,8 +13,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.manao.manaoshop.R;
@@ -27,36 +30,41 @@ public class MaNaoToolbar extends Toolbar {
     private View mView;
     private TextView mTextTitle;
     private EditText mSearchView;
-    private ImageButton mRightImageButton;
+    private Button mRightButton;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @SuppressLint("RestrictedApi")
     public MaNaoToolbar(Context context) {
         this(context, null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @SuppressLint("RestrictedApi")
     public MaNaoToolbar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("RestrictedApi")
     public MaNaoToolbar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         initView();
-        setContentInsetsRelative(10, 10);//设置左右间距
+//        setContentInsetsRelative(10, 10);//设置左右间距
         if (attrs != null) {
             TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
                     R.styleable.MaNaoTooBar, defStyleAttr, 0);
 
             Drawable rightIcon = a.getDrawable(R.styleable.MaNaoTooBar_rightButtonIcon);
             if (rightIcon != null) {
-                setRightButtonIcon(rightIcon);
+                setRightButtonText("编辑");
             }
 
             boolean isShowSearchView = a.getBoolean(R.styleable.MaNaoTooBar_isShowSearchView, false);
             if (isShowSearchView) {
                 showSearchView();
                 hideTitleView();
-                hideRightImageButton();
+                hideRightButton();
             }
 
             a.recycle();
@@ -70,23 +78,10 @@ public class MaNaoToolbar extends Toolbar {
             mView = mInflater.inflate(R.layout.toolbar, null);
             mTextTitle = mView.findViewById(R.id.toolbar_title);
             mSearchView = mView.findViewById(R.id.toolbar_searchview);
-            mRightImageButton = mView.findViewById(R.id.toolbar_rightButton);
+            mRightButton = mView.findViewById(R.id.toolbar_rightButton);
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
             addView(mView, lp);
         }
-    }
-
-    //设置右侧
-    public void setRightButtonIcon(Drawable icon) {
-        if (mRightImageButton != null) {
-            mRightImageButton.setImageDrawable(icon);
-            mRightImageButton.setVisibility(VISIBLE);
-        }
-    }
-
-    //右侧点击事件
-    public void setRightButtonOnClickListener(OnClickListener li) {
-        mRightImageButton.setOnClickListener(li);
     }
 
     //重写ToolBar settitle方法
@@ -130,15 +125,32 @@ public class MaNaoToolbar extends Toolbar {
     }
 
     //展示右侧图标
-    public void showRightImageButton() {
-        if (mRightImageButton != null)
-            mRightImageButton.setVisibility(VISIBLE);
+    public void showRightButton() {
+        if (mRightButton != null)
+            mRightButton.setVisibility(VISIBLE);
     }
 
     //隐藏右侧图标
-    public void hideRightImageButton() {
-        if (mRightImageButton != null)
-            mRightImageButton.setVisibility(GONE);
+    public void hideRightButton() {
+        if (mRightButton != null)
+            mRightButton.setVisibility(GONE);
+    }
+
+    //右侧图标文字
+    public void setRightButtonText(int id) {
+        if (mRightButton != null)
+            mRightButton.setText(getResources().getString(id));
+    }
+
+    //右侧图标文字
+    public void setRightButtonText(CharSequence text){
+        mRightButton.setText(text);
+        mRightButton.setVisibility(VISIBLE);
+    }
+
+    //获取右侧图标控件
+    public Button getRightButton(){
+        return this.mRightButton;
     }
 
 }

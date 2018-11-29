@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/orangered"
+    android:layout_height="50dp">
 
     <EditText
         android:id="@+id/toolbar_searchview"
@@ -24,16 +26,19 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="20sp"
+        tools:text="标题栏"
         android:visibility="gone" />
 
-    <ImageButton
+    <Button
         android:id="@+id/toolbar_rightButton"
-        android:src="@mipmap/icon_cart"
-        style="@android:style/Widget.Material.Toolbar.Button.Navigation"
+        android:background="@color/orangered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="50dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:textColor="@color/white"
+        tools:targetApi="lollipop" />
 
 </RelativeLayout>

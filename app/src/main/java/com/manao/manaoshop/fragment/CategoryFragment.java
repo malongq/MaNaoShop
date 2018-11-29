@@ -27,7 +27,7 @@ import com.manao.manaoshop.bean.Category;
 import com.manao.manaoshop.bean.CategroyRightListBean;
 import com.manao.manaoshop.bean.Page;
 import com.manao.manaoshop.http.BaseCallBack;
-import com.manao.manaoshop.http.HttpApi;
+import com.manao.manaoshop.http.ApiService;
 import com.manao.manaoshop.http.OkHttpHelper;
 import com.manao.manaoshop.http.SpotsCallBack;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -95,7 +95,7 @@ public class CategoryFragment extends Fragment {
      * 请求左侧数据
      */
     private void requestCategroyLeftData() {
-        mOkhttpHelper.get(HttpApi.API.CATEGROY_LEFT, new SpotsCallBack<List<Category>>(getContext()) {
+        mOkhttpHelper.get(ApiService.API.CATEGROY_LEFT, new SpotsCallBack<List<Category>>(getContext()) {
 
             @Override
             public void onSuccess(Response response, List<Category> categories) {
@@ -142,7 +142,7 @@ public class CategoryFragment extends Fragment {
      */
     private void requestCategroyRightBannerData() {
 
-        String url = HttpApi.API.BANNER + "?type=1";
+        String url = ApiService.API.BANNER + "?type=1";
 
         mOkhttpHelper.get(url, new SpotsCallBack<List<Banner>>(getContext()) {
             @Override
@@ -233,7 +233,7 @@ public class CategoryFragment extends Fragment {
      * 请求右侧列表数据
      */
     private void requestCategroyRightData(int categroyId) {
-        String url = HttpApi.API.WARES_LIST + "?categoryId=" + categroyId + "&curPage=" + curPage + "&pageSize=" + pageSize;
+        String url = ApiService.API.WARES_LIST + "?categoryId=" + categroyId + "&curPage=" + curPage + "&pageSize=" + pageSize;
         mOkhttpHelper.get(url, new BaseCallBack<Page<CategroyRightListBean>>() {
             @Override
             public void onRequestBefore(Request request) {

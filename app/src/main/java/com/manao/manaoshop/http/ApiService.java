@@ -5,7 +5,7 @@ package com.manao.manaoshop.http;
  * on 18/11/13.
  * url 管理类
  */
-public class HttpApi {
+public class ApiService {
 
     public static class API {
 

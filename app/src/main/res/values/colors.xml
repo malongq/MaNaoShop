@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccents">#60ff40</color>
+    <color name="colorAccentss">#ffffff</color>
+
     <color name="white">#ffffff</color>
     <!-- 白色 -->
     <color name="ivory">#fffff0</color>

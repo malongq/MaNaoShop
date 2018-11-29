@@ -35,7 +35,6 @@
 
             <ImageView
                 android:id="@+id/imgview_big"
-                android:src="@drawable/img_0_small1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent" />
@@ -53,7 +52,6 @@
 
                 <ImageView
                     android:id="@+id/imgview_small_top"
-                    android:src="@drawable/img_0_small1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -63,7 +61,6 @@
 
                 <ImageView
                     android:id="@+id/imgview_small_bottom"
-                    android:src="@drawable/img_0_small1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

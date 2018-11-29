@@ -43,8 +43,7 @@
                 <ImageView
                     android:id="@+id/imgview_small_top"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/img_0_small1" />
+                    android:layout_height="wrap_content" />
 
                 <View
                     android:id="@+id/line2"
@@ -53,8 +52,7 @@
                 <ImageView
                     android:id="@+id/imgview_small_bottom"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/img_0_small2" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -68,8 +66,7 @@
                 android:id="@+id/imgview_big"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:src="@drawable/img_big_0" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

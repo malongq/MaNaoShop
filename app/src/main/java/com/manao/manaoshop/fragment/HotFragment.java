@@ -13,13 +13,13 @@ import android.widget.Toast;
 
 import com.manao.manaoshop.R;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
-import com.manao.manaoshop.adapter.HotAdapter;
+//import com.manao.manaoshop.adapter.HotAdapter;
 import com.manao.manaoshop.adapter.HotAdapterNew;
 import com.manao.manaoshop.baseadapter.BaseAdapter;
 import com.manao.manaoshop.baseadapter.SimpleAdapter;
 import com.manao.manaoshop.bean.Page;
 import com.manao.manaoshop.bean.Wares;
-import com.manao.manaoshop.http.HttpApi;
+import com.manao.manaoshop.http.ApiService;
 import com.manao.manaoshop.http.OkHttpHelper;
 import com.manao.manaoshop.http.SpotsCallBack;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -49,7 +49,7 @@ public class HotFragment extends Fragment {
     @ViewInject(R.id.recycleview_hot)
     RecyclerView recycleview_hot;
 
-    private HotAdapter hotAdapter;
+//    private HotAdapter hotAdapter;
     private int currentPage = 1;//当前页
     private int totalPage = 1;//总页数
     private int pageSize = 10;//每页请求时参数，固定10条数据每页
@@ -78,7 +78,7 @@ public class HotFragment extends Fragment {
      * 网络请求加载数据
      */
     private void initData() {
-        String url = HttpApi.API.WARES_HOT + "?curPage=" + currentPage + "&pageSize=" + pageSize;
+        String url = ApiService.API.WARES_HOT + "?curPage=" + currentPage + "&pageSize=" + pageSize;
         okHttpHelper.get(url, new SpotsCallBack<Page<Wares>>(getContext()) {
 
             @Override

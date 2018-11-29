@@ -27,7 +27,7 @@ import com.manao.manaoshop.bean.Banner;
 import com.manao.manaoshop.bean.Campaign;
 import com.manao.manaoshop.bean.HomeCampaign;
 import com.manao.manaoshop.http.BaseCallBack;
-import com.manao.manaoshop.http.HttpApi;
+import com.manao.manaoshop.http.ApiService;
 import com.manao.manaoshop.http.OkHttpHelper;
 import com.manao.manaoshop.http.SpotsCallBack;
 
@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
      */
     private void initRecyclerView() {
 
-        httpHelper.get(HttpApi.API.HOME_RECRCLER_URL, new BaseCallBack<List<HomeCampaign>>() {
+        httpHelper.get(ApiService.API.HOME_RECRCLER_URL, new BaseCallBack<List<HomeCampaign>>() {
             @Override
             public void onRequestBefore(Request request) {
                 Log.i(TAG, "onRequestBefore: 马龙");

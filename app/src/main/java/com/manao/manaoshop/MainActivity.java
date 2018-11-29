@@ -1,5 +1,6 @@
 package com.manao.manaoshop;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -54,8 +55,33 @@ public class MainActivity extends AppCompatActivity {
             tabSpec.setIndicator(buildIndicator(tab));
             mTabHost.addTab(tabSpec, tab.getTab_fragment(), null);
         }
+        //固定刷新某一个fragment
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                //如果等于购物车Fragment
+                if (tabId == getString(R.string.cart)){
+                    //刷新购物车页面数据
+                    refCartFragmentData();
+                }
+            }
+        });
         mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);//去除各个子view中间竖线
         mTabHost.setCurrentTab(0);//默认选中第一个tab
+    }
+
+    //刷新购物车页面数据
+    private CartFragment cartFragment;
+    private void refCartFragmentData() {
+        if (cartFragment == null){
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(getString(R.string.cart));
+            if (fragment != null){
+                cartFragment = (CartFragment) fragment;
+                cartFragment.refData();
+            }
+        }else {
+            cartFragment.refData();
+        }
     }
 
     //加载底部菜单栏中的个体view
