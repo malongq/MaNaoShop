@@ -71,8 +71,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         //展示购物车数据
         showData();
 
-        mBtnDel.setOnClickListener(this);
-        mBtnOrder.setOnClickListener(this);
+        mBtnDel.setOnClickListener(this);//删除
+        mBtnOrder.setOnClickListener(this);//去结算
 
         return view;
     }
@@ -120,7 +120,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.toolbar_rightButton:
+            case R.id.toolbar_rightButton://右上角 编辑--完成
                 int action = (int) v.getTag();
                 if (ACTION_EDIT == action) {
                     showDelControl();
@@ -128,7 +128,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                     hideDelControl();
                 }
                 break;
-            case R.id.btn_del:
+            case R.id.btn_del://删除
                 mAdapter.delCart();
                 break;
         }
@@ -143,8 +143,8 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         mBtnOrder.setVisibility(View.GONE);
         mBtnDel.setVisibility(View.VISIBLE);
         mToolbar.getRightButton().setTag(ACTION_CAMPLATE);
-        mAdapter.checkAll_None(false);
-        mCheckBox.setChecked(false);
+        mAdapter.checkAll_None(false);//把商品全部设置未选中
+        mCheckBox.setChecked(false);//把全选按钮也设置未选中
     }
 
     /**

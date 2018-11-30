@@ -83,6 +83,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
 
     /**
      * 获取总价
+     *
      * @return
      */
     private float getTotalPrice() {
@@ -107,6 +108,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
 
     /**
      * 判断数据是否为null
+     *
      * @return
      */
     private boolean isNull() {
@@ -115,6 +117,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
 
     /**
      * 条目点击事件
+     *
      * @param view
      * @param position
      */
@@ -151,6 +154,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
 
     /**
      * 全部选中
+     *
      * @param isChecked
      */
     public void checkAll_None(boolean isChecked) {
@@ -172,7 +176,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
         if (!isNull()) {
             return;
         }
-        for (Iterator iterator = datas.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = datas.iterator(); iterator.hasNext();) {
             ShoppingCart cart = (ShoppingCart) iterator.next();
             if (cart.isChecked()) {
                 int position = datas.indexOf(cart);
@@ -185,6 +189,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
 
     /**
      * 获取合计总价控件
+     *
      * @param textview
      */
     public void setTextView(TextView textview) {
@@ -193,6 +198,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
 
     /**
      * 点击全选
+     *
      * @param ck
      */
     public void setCheckBox(CheckBox ck) {
