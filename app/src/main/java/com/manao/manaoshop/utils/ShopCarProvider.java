@@ -78,7 +78,7 @@ public class ShopCarProvider {
         commit();
     }
 
-    //提交数据
+    //提交数据到sp
     private void commit() {
         int size = datas.size();
         List<ShoppingCart> list = new ArrayList<>(size);

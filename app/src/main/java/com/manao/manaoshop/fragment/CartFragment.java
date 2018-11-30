@@ -135,7 +135,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * 清除选中方法
+     * 点击右上角编辑   清除选中方法
      */
     private void showDelControl() {
         mToolbar.getRightButton().setText("完成");
@@ -148,7 +148,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * 全部选中方法
+     * 点击右上角完成   全部选中方法
      */
     private void hideDelControl() {
         mTextTotal.setVisibility(View.VISIBLE);

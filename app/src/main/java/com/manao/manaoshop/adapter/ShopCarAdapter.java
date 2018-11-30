@@ -128,7 +128,7 @@ public class ShopCarAdapter extends SimpleAdapter<ShoppingCart> implements BaseA
     }
 
     /**
-     * 点击条目选中某条数据
+     * 点击条目选中某条数据后  判断是否要勾选下方全选
      */
     private void checkListen() {
         int count = 0;
