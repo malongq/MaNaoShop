@@ -9,7 +9,7 @@
     <com.manao.manaoshop.weiget.MaNaoToolbar
         android:id="@+id/manao_toobar"
         android:layout_width="match_parent"
-        app:titleTextColor="@color/colorPrimary"
+        app:titleTextColor="?attr/colorPrimary"
         app:isShowSearchView="false"
         app:navigationIcon="@drawable/icon_back_32px"
         app:contentInsetEnd="56dp"

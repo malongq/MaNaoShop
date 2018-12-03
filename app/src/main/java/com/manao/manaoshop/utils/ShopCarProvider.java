@@ -18,7 +18,7 @@ public class ShopCarProvider {
 
     public static final String SHOP_CAR_JSON = "shop_car_json";
 
-    private SparseArray<ShoppingCart> datas = null;
+    private static SparseArray<ShoppingCart> datas = null;//需用static修饰，否则会不好使
 
     private Context mContext;
 
