@@ -20,8 +20,10 @@ public class ApiService {
         public static final String CATEGROY_LEFT = BASE_URL + "category/list";
         //分类页Banner地址
         public static final String BANNER = BASE_URL + "banner/query";
-        //分类页Banner地址
+        //分类页右侧地址
         public static final String WARES_LIST = BASE_URL + "wares/list";
+        //首页商品列表点击进入的--页面地址
+        public static final String WARES_CAMPAIN_LIST = BASE_URL + "wares/campaign/list";
     }
 
 }

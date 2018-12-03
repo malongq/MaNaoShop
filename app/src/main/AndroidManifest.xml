@@ -25,6 +25,9 @@
 
         <!--测试页面-->
         <activity android:name=".test.TestActivity" />
+
+        <!--首页商品列表点击进入的页面-->
+        <activity android:name=".activity.CommodityActivity" />
     </application>
 
 </manifest>

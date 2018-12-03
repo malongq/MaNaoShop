@@ -65,4 +65,9 @@ public class HotAdapterNew extends SimpleAdapter<Wares> {
         return cart;
     }
 
+    public void resetLayout(int layoutId) {
+        this.layoutResId = layoutId;
+        notifyItemRangeChanged(0, getDatas().size());
+    }
+
 }

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerV
     //protected 可以让子类使用
     protected List<T> mDatas;
     protected final Context mContext;
-    protected final int layoutResId;
+    protected int layoutResId;
 
     public BaseAdapter(Context context, int layoutResId) {
         this(context, layoutResId, null);
@@ -102,6 +103,30 @@ public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerV
     //给HotFragment调用,获取原来页面的数据个数
     public List<T> getDatas() {
         return mDatas;
+    }
+
+    //刷新数据
+    public void refreshData(List<T> list) {
+        if (list != null && list.size() > 0) {
+            clear();
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                mDatas.add(i, list.get(i));
+                notifyItemInserted(i);
+            }
+        }
+    }
+
+    //加载更多数据
+    public void loadMoreData(List<T> list) {
+        if (list != null && list.size() > 0) {
+            int size = list.size();
+            int begin = mDatas.size();
+            for (int i = 0; i < size; i++) {
+                mDatas.add(list.get(i));
+                notifyItemInserted(i + begin);
+            }
+        }
     }
 
 }

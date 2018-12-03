@@ -1,5 +1,8 @@
 package com.manao.manaoshop.adapter;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.manao.manaoshop.R;
 import com.manao.manaoshop.bean.Campaign;
 import com.manao.manaoshop.bean.HomeCampaign;
@@ -28,7 +32,7 @@ public class HomeCategroyAdapter extends RecyclerView.Adapter<HomeCategroyAdapte
     private List<HomeCampaign> mDatas;
     private Context mContext;
 
-    public HomeCategroyAdapter(List<HomeCampaign> datas, Context context){
+    public HomeCategroyAdapter(List<HomeCampaign> datas, Context context) {
         mDatas = datas;
         this.mContext = context;
     }
@@ -65,7 +69,7 @@ public class HomeCategroyAdapter extends RecyclerView.Adapter<HomeCategroyAdapte
         return CARD_VIEW_L;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textTitle;
         ImageView imageViewBig;
         ImageView imageViewSmallTop;
@@ -85,28 +89,48 @@ public class HomeCategroyAdapter extends RecyclerView.Adapter<HomeCategroyAdapte
 
         @Override
         public void onClick(View v) {
-            HomeCampaign campaign = mDatas.get(getLayoutPosition());
-            if (mOnCampaignClickListener != null){
-                switch (v.getId()){
-                    case R.id.imgview_big:
-                        mOnCampaignClickListener.onClick(v,campaign.getCpOne());
-                        break;
-                    case R.id.imgview_small_top:
-                        mOnCampaignClickListener.onClick(v,campaign.getCpTwo());
-                        break;
-                    case R.id.imgview_small_bottom:
-                        mOnCampaignClickListener.onClick(v,campaign.getCpThree());
-                        break;
-                }
+            //点击条目加载动画并进入下一页面
+            if (mOnCampaignClickListener != null) {
+                initAnmation(v);
             }
         }
+
+        //点击条目加载动画并进入下一页面
+        private void initAnmation(final View view) {
+            //旋转动画
+            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, "rotationX", 0.0F, 360.0F).setDuration(500);
+            objectAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    HomeCampaign campaign = mDatas.get(getLayoutPosition());
+                    if (mOnCampaignClickListener != null) {
+                        switch (view.getId()) {
+                            case R.id.imgview_big:
+                                mOnCampaignClickListener.onClick(view, campaign.getCpOne());
+                                break;
+                            case R.id.imgview_small_top:
+                                mOnCampaignClickListener.onClick(view, campaign.getCpTwo());
+                                break;
+                            case R.id.imgview_small_bottom:
+                                mOnCampaignClickListener.onClick(view, campaign.getCpThree());
+                                break;
+                        }
+                    }
+                }
+            });
+            objectAnimator.start();
+        }
+
     }
 
+
     private OnCampaignClickListener mOnCampaignClickListener;
-    public void setmOnCampaignClickListener(OnCampaignClickListener listener){
+
+    public void setmOnCampaignClickListener(OnCampaignClickListener listener) {
         this.mOnCampaignClickListener = listener;
     }
-    public interface OnCampaignClickListener{
+
+    public interface OnCampaignClickListener {
         void onClick(View view, Campaign campaign);
     }
 }

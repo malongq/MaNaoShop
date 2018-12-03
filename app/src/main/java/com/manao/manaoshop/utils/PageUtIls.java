@@ -134,7 +134,7 @@ public class PageUtIls {
         public void onSuccess(Response response, Page<T> tPage) {
             builder.pageIndex = tPage.getCurrentPage();//当前页
             builder.totalPage = tPage.getTotalPage();//总页数
-            showData(tPage.getList(), tPage.getCurrentPage(), tPage.getTotalPage());//展示网络请求到的数据
+            showData(tPage.getList(), tPage.getCurrentPage(), tPage.getTotalPage(), tPage.getTotalCount());//展示网络请求到的数据
         }
 
         @Override
@@ -175,10 +175,15 @@ public class PageUtIls {
         requestData();
     }
 
+    //让外界调用传入参数
+    public void putParam(String key, Object value) {
+        builder.params.put(key, value);
+    }
+
     /**
      * 显示数据
      */
-    private <T> void showData(List<T> datas, int currentPage, int totalPage) {
+    private <T> void showData(List<T> datas, int currentPage, int totalPage, int totalCount) {
 
         if (datas == null || datas.size() <= 0) {
             Toast.makeText(builder.mContext, "加载不到数据", Toast.LENGTH_LONG).show();
@@ -187,18 +192,18 @@ public class PageUtIls {
 
         if (NORMALL == state) {
             if (builder.onPageListener != null) {
-                builder.onPageListener.load(datas, currentPage, totalPage);
+                builder.onPageListener.load(datas, currentPage, totalPage, totalCount);
             }
         } else if (REFRESH == state) {
             builder.mRefreshLayout.finishRefresh();
             if (builder.onPageListener != null) {
-                builder.onPageListener.refresh(datas, currentPage, totalPage);
+                builder.onPageListener.refresh(datas, currentPage, totalPage, totalCount);
             }
 
         } else if (LOADMORE == state) {
             builder.mRefreshLayout.finishLoadMore();
             if (builder.onPageListener != null) {
-                builder.onPageListener.loadMore(datas, currentPage, totalPage);
+                builder.onPageListener.loadMore(datas, currentPage, totalPage, totalCount);
             }
 
         }
@@ -249,11 +254,11 @@ public class PageUtIls {
     //请求类型监听
     public interface OnPageListener<T> {
 
-        void load(List<T> datas, int currentPage, int totalPage);
+        void load(List<T> datas, int currentPage, int totalPage, int totalCount);
 
-        void refresh(List<T> datas, int currentPage, int totalPage);
+        void refresh(List<T> datas, int currentPage, int totalPage, int totalCount);
 
-        void loadMore(List<T> datas, int currentPage, int totalPage);
+        void loadMore(List<T> datas, int currentPage, int totalPage, int totalCount);
 
     }
 

@@ -1,5 +1,6 @@
 package com.manao.manaoshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.annotation.NonNull;
@@ -20,7 +21,9 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.R;
+import com.manao.manaoshop.activity.CommodityActivity;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
 import com.manao.manaoshop.adapter.HomeCategroyAdapter;
 import com.manao.manaoshop.bean.Banner;
@@ -151,7 +154,7 @@ public class HomeFragment extends Fragment {
     /**
      * 加载首页轮播图下面的广告数据
      */
-    private void initRecyclerData(List<HomeCampaign> datas) {
+    private void initRecyclerData(final List<HomeCampaign> datas) {
         //下面的广告图片
         mAdapter = new HomeCategroyAdapter(datas,getContext());
         mRecycle_view.addItemDecoration(new DividerItemDecortionMl(getContext(), DividerItemDecortionMl.VERTICAL_LIST));//线
@@ -160,7 +163,9 @@ public class HomeFragment extends Fragment {
         mAdapter.setmOnCampaignClickListener(new HomeCategroyAdapter.OnCampaignClickListener() {
             @Override
             public void onClick(View view, Campaign campaign) {
-                Toast.makeText(getContext(), campaign.getTitle()+"", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), CommodityActivity.class);
+                intent.putExtra(Constants.CAMPAIGN_ID,campaign.getId());
+                startActivity(intent);
             }
         });
     }

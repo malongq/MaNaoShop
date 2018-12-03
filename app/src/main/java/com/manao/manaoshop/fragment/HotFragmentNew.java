@@ -74,7 +74,7 @@ public class HotFragmentNew extends Fragment implements PageUtIls.OnPageListener
      * @param totalPage
      */
     @Override
-    public void load(final List<Wares> datas, int currentPage, int totalPage) {
+    public void load(final List<Wares> datas, int currentPage, int totalPage, int totalCount) {
         adapterNew = new HotAdapterNew(getContext(),datas);
         recycleview_hot.setAdapter(adapterNew);
         recycleview_hot.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -89,14 +89,14 @@ public class HotFragmentNew extends Fragment implements PageUtIls.OnPageListener
     }
 
     @Override
-    public void refresh(List<Wares> datas, int currentPage, int totalPage) {
+    public void refresh(List<Wares> datas, int currentPage, int totalPage, int totalCount) {
         adapterNew.clear();
         adapterNew.addData(datas);
         recycleview_hot.scrollToPosition(0);
     }
 
     @Override
-    public void loadMore(List<Wares> datas, int currentPage, int totalPage) {
+    public void loadMore(List<Wares> datas, int currentPage, int totalPage, int totalCount) {
         adapterNew.addData(adapterNew.getDatas().size(), datas);
         recycleview_hot.scrollToPosition(adapterNew.getDatas().size());
     }
