@@ -14,6 +14,7 @@ import com.manao.manaoshop.fragment.CartFragment;
 import com.manao.manaoshop.fragment.CategoryFragment;
 import com.manao.manaoshop.fragment.HomeFragment;
 import com.manao.manaoshop.fragment.HotFragment;
+import com.manao.manaoshop.fragment.HotFragmentNew;
 import com.manao.manaoshop.fragment.MineFragment;
 import com.manao.manaoshop.weiget.FragmentTabHost;
 import java.util.ArrayList;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     //加载底部菜单栏
     private void initTab() {
         Tab tab_home = new Tab(R.string.home, R.drawable.selector_icon_home, HomeFragment.class);//首页
-        Tab tab_hot = new Tab(R.string.hot, R.drawable.selector_icon_hot, HotFragment.class);//热卖
+//        Tab tab_hot = new Tab(R.string.hot, R.drawable.selector_icon_hot, HotFragment.class);//热卖
+        Tab tab_hot = new Tab(R.string.hot, R.drawable.selector_icon_hot, HotFragmentNew.class);//热卖
         Tab tab_catagory = new Tab(R.string.catagory, R.drawable.selector_icon_category, CategoryFragment.class);//分类
         Tab tab_cart = new Tab(R.string.cart, R.drawable.selector_icon_cart, CartFragment.class);//购物车
         Tab tab_mine = new Tab(R.string.mine, R.drawable.selector_icon_mine, MineFragment.class);//我的
