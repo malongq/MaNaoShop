@@ -39,6 +39,7 @@ import okhttp3.Response;
  * on 18/11/5.
  * 热卖
  */
+@Deprecated
 public class HotFragment extends Fragment {
 
     private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
