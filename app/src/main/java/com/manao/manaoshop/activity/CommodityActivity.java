@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
@@ -32,7 +34,8 @@ import java.util.List;
  * on 18/12/3.
  * 首页商品列表点击进入的--页面
  */
-public class CommodityActivity extends AppCompatActivity implements PageUtIls.OnPageListener, TabLayout.OnTabSelectedListener {
+public class CommodityActivity extends AppCompatActivity implements PageUtIls.OnPageListener, TabLayout.OnTabSelectedListener,View.OnClickListener {
+
 
     @ViewInject(R.id.manao_toobar)
     private MaNaoToolbar mMaNaoToolbar;
@@ -56,6 +59,8 @@ public class CommodityActivity extends AppCompatActivity implements PageUtIls.On
     private static final int THREE_TAG = 2;
     private HotAdapterNew mWaresAdapter;
     private PageUtIls pageUtIls;
+    private static final int ACTION_LIST = 1;
+    private static final int ACTION_GRID = 2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +91,11 @@ public class CommodityActivity extends AppCompatActivity implements PageUtIls.On
                 CommodityActivity.this.finish();
             }
         });
+        mMaNaoToolbar.hideSearchView();
+        mMaNaoToolbar.hideRightButton();
+        mMaNaoToolbar.setRightButtonIcon(R.drawable.icon_list_32);
+        mMaNaoToolbar.getRightButton().setTag(ACTION_LIST);
+        mMaNaoToolbar.setRightButtonOnClickListener(this);
     }
 
     //加载tab
@@ -166,4 +176,21 @@ public class CommodityActivity extends AppCompatActivity implements PageUtIls.On
     //tab再次选中--不用该方法
     @Override
     public void onTabReselected(TabLayout.Tab tab) {}
+
+    //ToolBar右侧图片点击事件
+    @Override
+    public void onClick(View v) {
+        int tag = (int) v.getTag();
+        if(tag == ACTION_LIST){
+            mMaNaoToolbar.setRightButtonIcon(R.drawable.icon_list_32);
+            mMaNaoToolbar.getRightButton().setTag(ACTION_GRID);
+            mWaresAdapter.resetLayout(R.layout.template_grid_wares);
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        }else if(tag == ACTION_GRID){
+            mMaNaoToolbar.setRightButtonIcon(R.drawable.icon_grid_32);
+            mMaNaoToolbar.getRightButton().setTag(ACTION_LIST);
+            mWaresAdapter.resetLayout(R.layout.template_hot_wares);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
+    }
 }

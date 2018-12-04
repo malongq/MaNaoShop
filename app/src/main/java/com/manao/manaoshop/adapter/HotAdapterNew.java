@@ -45,13 +45,16 @@ public class HotAdapterNew extends SimpleAdapter<Wares> {
         holder.getTextView(R.id.text_price).setText("￥" + wares.getPrice());
 
         Button button = holder.getButton(R.id.btn_into);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                provider.put(convertData(wares));
-                ToastUtils.show(context, "已经加入购物车");
-            }
-        });
+        if (button != null) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    provider.put(convertData(wares));
+                    ToastUtils.show(context, "已经加入购物车");
+                }
+            });
+        }
+
     }
 
     //将数据添加进provider
@@ -65,6 +68,7 @@ public class HotAdapterNew extends SimpleAdapter<Wares> {
         return cart;
     }
 
+    //重新加载不同布局，并切换列表排列方式
     public void resetLayout(int layoutId) {
         this.layoutResId = layoutId;
         notifyItemRangeChanged(0, getDatas().size());

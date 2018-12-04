@@ -27,11 +27,11 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         tools:text="标题栏"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/toolbar_rightButton"
-        android:background="@color/orangered"
+        android:background="?attr/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minHeight="50dp"
@@ -40,5 +40,14 @@
         android:visibility="gone"
         android:textColor="@color/white"
         tools:targetApi="lollipop" />
+
+    <ImageView
+        android:id="@+id/iv_right"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:src="@drawable/icon_list_32"/>
 
 </RelativeLayout>

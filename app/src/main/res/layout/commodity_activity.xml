@@ -12,8 +12,8 @@
         app:titleTextColor="?attr/colorPrimary"
         app:isShowSearchView="false"
         app:navigationIcon="@drawable/icon_back_32px"
-        app:contentInsetEnd="56dp"
         app:title="商品列表"
+        app:contentInsetEnd="10dp"
         android:background="?attr/colorPrimary"
         android:minHeight="45dp"
         android:layout_height="45dp"/>

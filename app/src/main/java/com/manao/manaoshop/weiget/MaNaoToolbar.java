@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.manao.manaoshop.R;
@@ -31,6 +32,7 @@ public class MaNaoToolbar extends Toolbar {
     private TextView mTextTitle;
     private EditText mSearchView;
     private Button mRightButton;
+    private ImageView mImageView;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("RestrictedApi")
@@ -57,7 +59,7 @@ public class MaNaoToolbar extends Toolbar {
 
             Drawable rightIcon = a.getDrawable(R.styleable.MaNaoTooBar_rightButtonIcon);
             if (rightIcon != null) {
-                setRightButtonText("编辑");
+                setRightButtonIcon(rightIcon);
             }
 
             boolean isShowSearchView = a.getBoolean(R.styleable.MaNaoTooBar_isShowSearchView, false);
@@ -67,21 +69,31 @@ public class MaNaoToolbar extends Toolbar {
                 hideRightButton();
             }
 
+            CharSequence rightButtonText = a.getText(R.styleable.MaNaoTooBar_rightButtonText);
+            if (rightButtonText != null) {
+                setRightButtonText(rightButtonText);
+            }
+
             a.recycle();
         }
     }
 
     //加载自定义ToolBar
     private void initView() {
+
         if (mView == null) {
+
             mInflater = LayoutInflater.from(getContext());
             mView = mInflater.inflate(R.layout.toolbar, null);
+
             mTextTitle = mView.findViewById(R.id.toolbar_title);
             mSearchView = mView.findViewById(R.id.toolbar_searchview);
             mRightButton = mView.findViewById(R.id.toolbar_rightButton);
+
             LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
             addView(mView, lp);
         }
+
     }
 
     //重写ToolBar settitle方法
@@ -100,18 +112,6 @@ public class MaNaoToolbar extends Toolbar {
         }
     }
 
-    //展示搜索
-    public void showSearchView() {
-        if (mSearchView != null)
-            mSearchView.setVisibility(VISIBLE);
-    }
-
-    //隐藏搜索
-    public void hideSearchView() {
-        if (mSearchView != null)
-            mSearchView.setVisibility(GONE);
-    }
-
     //展示title
     public void showTitleView() {
         if (mTextTitle != null)
@@ -124,33 +124,63 @@ public class MaNaoToolbar extends Toolbar {
             mTextTitle.setVisibility(GONE);
     }
 
-    //展示右侧图标
+    //展示搜索
+    public void showSearchView() {
+        if (mSearchView != null)
+            mSearchView.setVisibility(VISIBLE);
+    }
+
+    //隐藏搜索
+    public void hideSearchView() {
+        if (mSearchView != null)
+            mSearchView.setVisibility(GONE);
+    }
+
+    //展示右侧图标button
     public void showRightButton() {
         if (mRightButton != null)
             mRightButton.setVisibility(VISIBLE);
     }
 
-    //隐藏右侧图标
+    //隐藏右侧图标button
     public void hideRightButton() {
         if (mRightButton != null)
             mRightButton.setVisibility(GONE);
     }
 
-    //右侧图标文字
+    //右侧图标文字button
     public void setRightButtonText(int id) {
         if (mRightButton != null)
             mRightButton.setText(getResources().getString(id));
     }
 
-    //右侧图标文字
-    public void setRightButtonText(CharSequence text){
+    //右侧图标文字button
+    public void setRightButtonText(CharSequence text) {
         mRightButton.setText(text);
         mRightButton.setVisibility(VISIBLE);
     }
 
-    //获取右侧图标控件
-    public Button getRightButton(){
+    //获取右侧图标控件button
+    public Button getRightButton() {
         return this.mRightButton;
     }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void setRightButtonIcon(Drawable icon) {
+        if (mRightButton != null) {
+            mRightButton.setBackground(icon);
+            mRightButton.setVisibility(VISIBLE);
+        }
+
+    }
+
+    public void setRightButtonIcon(int icon) {
+        setRightButtonIcon(getResources().getDrawable(icon));
+    }
+
+    public void setRightButtonOnClickListener(OnClickListener li) {
+        mRightButton.setOnClickListener(li);
+    }
+
 
 }
