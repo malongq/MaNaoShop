@@ -49,7 +49,7 @@ public class HotAdapterNew extends SimpleAdapter<Wares> {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    provider.put(convertData(wares));
+                    provider.put(wares);
                     ToastUtils.show(context, "已经加入购物车");
                 }
             });
@@ -57,16 +57,16 @@ public class HotAdapterNew extends SimpleAdapter<Wares> {
 
     }
 
-    //将数据添加进provider
-    public ShoppingCart convertData(Wares item) {
-        ShoppingCart cart = new ShoppingCart();
-        cart.setId(item.getId());
-        cart.setDescription(item.getDescription());
-        cart.setImgUrl(item.getImgUrl());
-        cart.setName(item.getName());
-        cart.setPrice(item.getPrice());
-        return cart;
-    }
+    //将数据添加进provider--该方法废弃，已经重构进ShopCarProvider类
+//    public ShoppingCart convertData(Wares item) {
+//        ShoppingCart cart = new ShoppingCart();
+//        cart.setId(item.getId());
+//        cart.setDescription(item.getDescription());
+//        cart.setImgUrl(item.getImgUrl());
+//        cart.setName(item.getName());
+//        cart.setPrice(item.getPrice());
+//        return cart;
+//    }
 
     //重新加载不同布局，并切换列表排列方式
     public void resetLayout(int layoutId) {

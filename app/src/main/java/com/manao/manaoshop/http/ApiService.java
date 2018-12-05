@@ -24,6 +24,8 @@ public class ApiService {
         public static final String WARES_LIST = BASE_URL + "wares/list";
         //首页商品列表点击进入的--页面地址
         public static final String WARES_CAMPAIN_LIST = BASE_URL + "wares/campaign/list";
+        //热卖商品列表点击进入的--H5页面地址
+        public static final String WARES_DETAIL = BASE_URL + "wares/detail.html";
     }
 
 }

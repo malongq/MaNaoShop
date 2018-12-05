@@ -5,6 +5,7 @@ import android.util.SparseArray;
 
 import com.google.gson.reflect.TypeToken;
 import com.manao.manaoshop.bean.ShoppingCart;
+import com.manao.manaoshop.bean.Wares;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class ShopCarProvider {
 
     public ShopCarProvider(Context mContext) {
         this.mContext = mContext;
-        datas = new SparseArray<>(100);
+        datas = new SparseArray<>(10);
         listToSparse();
     }
 
@@ -66,6 +67,12 @@ public class ShopCarProvider {
         commit();
     }
 
+    //添加数据
+    public void put(Wares wares){
+        ShoppingCart cart = convertData(wares);
+        put(cart);
+    }
+
     //更新数据
     public void update(ShoppingCart cart) {
         datas.put(cart.getId().intValue(), cart);
@@ -86,6 +93,17 @@ public class ShopCarProvider {
             list.add(datas.valueAt(i));
         }
         SPreferencesUtils.putString(mContext, SHOP_CAR_JSON, JSONUtils.toJSON(list));
+    }
+
+    //将数据添加进provider--转换类型
+    public ShoppingCart convertData(Wares item) {
+        ShoppingCart cart = new ShoppingCart();
+        cart.setId(item.getId());
+        cart.setDescription(item.getDescription());
+        cart.setImgUrl(item.getImgUrl());
+        cart.setName(item.getName());
+        cart.setPrice(item.getPrice());
+        return cart;
     }
 
 }

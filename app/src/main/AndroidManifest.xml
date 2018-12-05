@@ -28,6 +28,9 @@
 
         <!--首页商品列表点击进入的页面-->
         <activity android:name=".activity.CommodityActivity" />
+
+        <!--热卖列表点击进入的h5页面-->
+        <activity android:name=".activity.WaresActivity" />
     </application>
 
 </manifest>

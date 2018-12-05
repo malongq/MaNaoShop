@@ -1,5 +1,6 @@
 package com.manao.manaoshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
+import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.R;
+import com.manao.manaoshop.activity.WaresActivity;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
 import com.manao.manaoshop.adapter.HotAdapterNew;
 import com.manao.manaoshop.baseadapter.BaseAdapter;
@@ -25,6 +28,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -83,7 +87,11 @@ public class HotFragmentNew extends Fragment implements PageUtIls.OnPageListener
         adapterNew.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(getContext(), datas.get(position).getName(), Toast.LENGTH_SHORT).show();
+
+                Wares wares = adapterNew.getItem(position);
+                Intent intent = new Intent(getActivity(), WaresActivity.class);
+                intent.putExtra(Constants.WARE, wares);
+                startActivity(intent);
             }
         });
     }

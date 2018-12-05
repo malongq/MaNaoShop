@@ -41,13 +41,4 @@
         android:textColor="@color/white"
         tools:targetApi="lollipop" />
 
-    <ImageView
-        android:id="@+id/iv_right"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone"
-        android:src="@drawable/icon_list_32"/>
-
 </RelativeLayout>
