@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+        <title>HTML5 测试</title>
+
+        <style type="text/css">
+
+            .input{
+                width:90%
+                height:40dp
+            }
+
+            .button{
+                width:50%
+                height:70dp
+                background:#fff
+             color:#000
+         }
+
+        </style>
+
+        <script type="text/javascript">
+
+            function webToAndroid(){
+			    var name = document.getElementById("txtName").value;
+			    window.app.sayHello(name);
+	        }
+
+	        function androidToWeb(name){
+		        document.getElementById("txtName").value=name;
+	        }
+
+        </script>
+
+    </head>
+
+
+
+
+
+    <body>
+
+        <input id="txtName" class="input">
+
+        <br/>
+        <hr>
+
+        <button class="button" onclick="sayhello()">say Hello</button>
+
+    </body>
+
+</html>

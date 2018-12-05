@@ -1,1 +1,1 @@
-include ':app', ':myapplication', ':frescodemo', ':addorsubdemo'
+include ':app', ':myapplication', ':frescodemo', ':addorsubdemo', ':html5demo'
