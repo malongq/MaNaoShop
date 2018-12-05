@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Created by Malong
  * on 18/12/3.
- * 首页商品列表点击进入的--页面
+ * 首页商品列表点击进入的-- “商品列表” 页面
  */
 public class CommodityActivity extends AppCompatActivity implements PageUtIls.OnPageListener, TabLayout.OnTabSelectedListener,View.OnClickListener {
 
