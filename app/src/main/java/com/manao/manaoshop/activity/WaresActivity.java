@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.R;
@@ -23,8 +25,12 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 import dmax.dialog.SpotsDialog;
 
 
@@ -96,7 +102,7 @@ public class WaresActivity extends AppCompatActivity {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        // title标题，微信、QQ和QQ空间等平台使用
+        /*// title标题，微信、QQ和QQ空间等平台使用
         oks.setTitle(getString(R.string.share));
         // titleUrl QQ和QQ空间跳转链接
         oks.setTitleUrl("https://github.com/malongq");
@@ -107,7 +113,58 @@ public class WaresActivity extends AppCompatActivity {
         // url在微信、微博，Facebook等平台中使用
         oks.setUrl("https://github.com/malongq");
         // comment是我对这条分享的评论，仅在人人网使用
-        oks.setComment("我是玛瑙我是玛瑙我是玛瑙我是玛瑙");
+        oks.setComment("我是玛瑙我是玛瑙我是玛瑙我是玛瑙");*/
+        oks.setCallback(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                Log.d("ShareLogin", "onComplete ---->  分享成功");
+                platform.getName();
+            }
+
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+                Log.d("ShareLogin", "onError ---->  失败" + throwable.getStackTrace());
+                Log.d("ShareLogin", "onError ---->  失败" + throwable.getMessage());
+                throwable.printStackTrace();
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+                Log.d("ShareLogin", "onCancel ---->  分享取消");
+            }
+        });
+
+        oks.setShareContentCustomizeCallback(new ShareContentCustomizeCallback() {
+            @Override
+            public void onShare(Platform platform, cn.sharesdk.framework.Platform.ShareParams paramsToShare) {
+                if ("Dingding".equals(platform.getName())) {
+                    paramsToShare.setText("分享到 钉钉 的内容");
+                    paramsToShare.setImageUrl(wares.getImgUrl());
+                }
+                if ("Wechat".equals(platform.getName())) {
+                    paramsToShare.setTitle("玛瑙商城");
+                    paramsToShare.setText("分享到 微信 的内容");
+                    paramsToShare.setImageUrl(wares.getImgUrl());
+                    paramsToShare.setUrl("https://github.com/malongq");
+                    paramsToShare.setShareType(Platform.SHARE_WEBPAGE);
+                    Log.d("ShareSDK", paramsToShare.toMap().toString());
+                    Toast.makeText(WaresActivity.this, "点击微信分享啦", Toast.LENGTH_SHORT).show();
+                }
+                if ("WechatMoments".equals(platform.getName())) {
+                    paramsToShare.setTitle("玛瑙商城");
+                    paramsToShare.setText("分享到 微信朋友圈 的内容");
+                    paramsToShare.setImageUrl(wares.getImgUrl());
+                    paramsToShare.setUrl("https://github.com/malongq");
+                    paramsToShare.setShareType(Platform.SHARE_WEBPAGE);
+                }
+                if ("QQ".equals(platform.getName())) {
+                    paramsToShare.setTitle("玛瑙商城");
+                    paramsToShare.setTitleUrl("https://github.com/malongq");
+                    paramsToShare.setText("分享到 QQ 的内容");
+                    paramsToShare.setImageUrl(wares.getImgUrl());
+                }
+            }
+        });
         // 启动分享GUI
         oks.show(this);
     }
