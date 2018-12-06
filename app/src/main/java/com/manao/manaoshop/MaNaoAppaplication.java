@@ -3,6 +3,7 @@ package com.manao.manaoshop;
 import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.mob.MobSDK;
 
 import org.xutils.x;
 
@@ -20,5 +21,7 @@ public class MaNaoAppaplication extends Application {
         //xUtils加载
         x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);// 是否输出debug日志, 开启debug会影响性能
+        //shareSDK
+        MobSDK.init(this);
     }
 }

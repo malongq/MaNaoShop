@@ -24,6 +24,7 @@ import org.xutils.x;
 
 import java.io.Serializable;
 
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import dmax.dialog.SpotsDialog;
 
 
@@ -32,7 +33,7 @@ import dmax.dialog.SpotsDialog;
  * on 18/12/5.
  * 商品详情页面 H5
  */
-public class WaresActivity extends AppCompatActivity{
+public class WaresActivity extends AppCompatActivity {
 
     @ViewInject(R.id.manao_toobar)
     private MaNaoToolbar maNaoToolbar;
@@ -55,7 +56,7 @@ public class WaresActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         Serializable data = intent.getSerializableExtra(Constants.WARE);
-        if (data == null){
+        if (data == null) {
             this.finish();
         }
         wares = (Wares) data;
@@ -84,10 +85,32 @@ public class WaresActivity extends AppCompatActivity{
         maNaoToolbar.setRightButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.show(context,"分享");
-//                showShare();
+                //分享函数
+                showShare();
             }
         });
+    }
+
+    //分享函数
+    private void showShare() {
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // title标题，微信、QQ和QQ空间等平台使用
+        oks.setTitle(getString(R.string.share));
+        // titleUrl QQ和QQ空间跳转链接
+        oks.setTitleUrl("http://sharesdk.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("我是分享文本");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        // url在微信、微博，Facebook等平台中使用
+        oks.setUrl("http://sharesdk.cn");
+        // comment是我对这条分享的评论，仅在人人网使用
+        oks.setComment("我是测试评论文本");
+        // 启动分享GUI
+        oks.show(this);
     }
 
     //加载WebView
@@ -101,7 +124,7 @@ public class WaresActivity extends AppCompatActivity{
 
         appInterface = new AppInterface(this);
 
-        webView.addJavascriptInterface(appInterface,"appInterface");//与H5通信接口桥梁
+        webView.addJavascriptInterface(appInterface, "appInterface");//与H5通信接口桥梁
         webView.setWebViewClient(new WebAppClient());//WebViewClient主要帮助WebView处理各种通知、请求事件
     }
 
@@ -109,38 +132,39 @@ public class WaresActivity extends AppCompatActivity{
     class AppInterface {
 
         private Context mContext;
+
         public AppInterface(Context context) {
             this.mContext = context;
         }
 
         //调用H5方法
         @JavascriptInterface
-        public void showDetail(){
+        public void showDetail() {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    webView.loadUrl("javascript:showDetail("+wares.getId()+")");
+                    webView.loadUrl("javascript:showDetail(" + wares.getId() + ")");
                 }
             });
         }
 
         //调用Android方法
         @JavascriptInterface
-        public void buy(long id){
+        public void buy(long id) {
             provider.put(wares);
-            ToastUtils.show(mContext,"已添加到购物车");
+            ToastUtils.show(mContext, "已添加到购物车");
         }
 
         //调用Android方法
         @JavascriptInterface
-        public void addFavorites(long id){
-            ToastUtils.show(mContext,"收藏");
+        public void addFavorites(long id) {
+            ToastUtils.show(mContext, "收藏");
         }
 
     }
 
     //WebViewClient主要帮助WebView处理各种通知、请求事件
-    class  WebAppClient extends WebViewClient{
+    class WebAppClient extends WebViewClient {
 
         //网页加载完成回调
         @Override
