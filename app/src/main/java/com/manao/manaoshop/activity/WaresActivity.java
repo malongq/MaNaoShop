@@ -161,7 +161,11 @@ public class WaresActivity extends AppCompatActivity {
                     paramsToShare.setTitle("玛瑙商城");
                     paramsToShare.setTitleUrl("https://github.com/malongq");
                     paramsToShare.setText("分享到 QQ 的内容");
-                    paramsToShare.setImageUrl(wares.getImgUrl());
+//                    paramsToShare.setImageUrl(wares.getImgUrl());
+                    String url = "https://hmls.hfbank.com.cn/hfapp-api/9.png";
+                    paramsToShare.setImageUrl(url);
+//                    paramsToShare.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
+//                    paramsToShare.setImageUrl("https://img.cniao5.com/s_recommend_rBEhWlMFnG0IAAAAAAIqnbSuyAAAAIxLwJ57aQAAiq1705.jpg");
                 }
             }
         });
