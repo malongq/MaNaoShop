@@ -5,8 +5,8 @@ import android.net.Uri;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.manao.manaoshop.R;
-import com.manao.manaoshop.baseadapter.BaseViewHolder;
-import com.manao.manaoshop.baseadapter.SimpleAdapter;
+import com.manao.manaoshop.base.baseadapter.BaseViewHolder;
+import com.manao.manaoshop.base.baseadapter.SimpleAdapter;
 import com.manao.manaoshop.bean.CategroyRightListBean;
 
 import java.util.List;

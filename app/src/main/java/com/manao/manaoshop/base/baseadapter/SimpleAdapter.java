@@ -1,4 +1,4 @@
-package com.manao.manaoshop.baseadapter;
+package com.manao.manaoshop.base.baseadapter;
 
 import android.content.Context;
 import java.util.List;

@@ -69,6 +69,8 @@ public class MaNaoAppaplication extends Application {
         return UserLocalData.getToken(this);
     }
 
+
+    /*********该方案可以使解决比如付款时没有登录，就进登录页面，登录成功后，在进入下一个要进入的页面*********/
     private Intent intent;
 
     public void putIntent(Intent intent) {
@@ -83,6 +85,7 @@ public class MaNaoAppaplication extends Application {
         context.startActivity(intent);
         this.intent = null;
     }
+    /*********该方案可以使解决比如付款时没有登录，就进登录页面，登录成功后，在进入下一个要进入的页面*********/
 
 
 }

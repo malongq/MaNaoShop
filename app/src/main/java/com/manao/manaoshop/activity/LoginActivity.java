@@ -137,7 +137,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         appaplication.putUser(userLoginRespMsg.getData(), userLoginRespMsg.getToken());
                         if (appaplication.getIntent() == null) {
                             //todo 跳转页面第二步：RESULT_OK 是系统的，表示成功，然后在去跳转的页面
-                            setResult(RESULT_OK);
+                            // TODO: 18/12/7    在意图跳转的目的地界面调用这个方法把Activity想要返回的数据返回到主Activity，
+                            // TODO: 18/12/7　　第一个参数：当Activity结束时resultCode将归还在onActivityResult()中，一般为RESULT_CANCELED , RESULT_OK该值默认为-1。
+                            // TODO: 18/12/7　　第二个参数：一个Intent对象，返回给主Activity的数据。在intent对象携带了要返回的数据，使用putExtra( )方法。上面由济南大介绍。
+                            //setResult(2,appaplication.getIntent());也可以这么写
+                            setResult(RESULT_OK);// RESULT_OK，判断另外一个activity已经结束数据输入功能，Standard activity result:
                             finish();
                         } else {
                             appaplication.jumpToTargetActivity(LoginActivity.this);

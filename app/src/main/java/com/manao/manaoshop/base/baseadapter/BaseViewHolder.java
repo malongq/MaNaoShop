@@ -1,4 +1,4 @@
-package com.manao.manaoshop.baseadapter;
+package com.manao.manaoshop.base.baseadapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;

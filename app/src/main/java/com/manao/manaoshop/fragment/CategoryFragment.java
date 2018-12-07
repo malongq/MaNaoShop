@@ -21,7 +21,7 @@ import com.manao.manaoshop.adapter.CategroyAdapter;
 import com.manao.manaoshop.adapter.CategroyRightAdapter;
 import com.manao.manaoshop.adapter.DividerGridItemDecoration;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
-import com.manao.manaoshop.baseadapter.BaseAdapter;
+import com.manao.manaoshop.base.baseadapter.BaseAdapter;
 import com.manao.manaoshop.bean.Banner;
 import com.manao.manaoshop.bean.Category;
 import com.manao.manaoshop.bean.CategroyRightListBean;

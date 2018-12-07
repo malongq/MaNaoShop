@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 import com.manao.manaoshop.Constants;
@@ -18,7 +17,7 @@ import com.manao.manaoshop.R;
 import com.manao.manaoshop.activity.WaresActivity;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
 import com.manao.manaoshop.adapter.HotAdapterNew;
-import com.manao.manaoshop.baseadapter.BaseAdapter;
+import com.manao.manaoshop.base.baseadapter.BaseAdapter;
 import com.manao.manaoshop.bean.Page;
 import com.manao.manaoshop.bean.Wares;
 import com.manao.manaoshop.http.ApiService;
@@ -28,7 +27,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
