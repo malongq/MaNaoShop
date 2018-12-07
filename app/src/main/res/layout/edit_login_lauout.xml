@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ll_phone"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <ImageView
+            android:id="@+id/iv_phone"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_telphone_32" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_toRightOf="@+id/iv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="请输入手机号"
+            android:paddingLeft="12dp"
+            android:layout_toLeftOf="@+id/iv_clear"
+            android:textColorHint="@color/defaultTextColor" />
+
+        <ImageView
+            android:id="@+id/iv_clear"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_delete_32" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.manao.manaoshop.weiget.MaNaoToolbar
+        android:id="@+id/manao_toobar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="40dp"
+        app:contentInsetEnd="10dp"
+        app:isShowSearchView="false"
+        app:navigationIcon="@drawable/icon_back_32px"
+        app:title="登录"
+        app:titleTextColor="@color/colorPrimary" />
+
+    <com.manao.manaoshop.weiget.LoginEditLayout
+        android:id="@+id/tv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/selector_edittext"
+        android:drawableLeft="@drawable/icon_telphone_32"
+        android:drawablePadding="15dp"
+        android:hint="请输入手机号码"
+        android:inputType="phone"
+        android:paddingLeft="10dp"
+        android:textColor="@color/result_view"
+        android:textColorHint="@color/backColor" />
+
+    <com.manao.manaoshop.weiget.LoginEditLayout
+        android:id="@+id/tv_password"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/selector_edittext"
+        android:drawableLeft="@drawable/icon_lock"
+        android:drawablePadding="15dp"
+        android:hint="请输入登录密码"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:textColor="@color/result_view"
+        android:textColorHint="@color/backColor" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/bigRedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="60dp"
+        android:text="登 录" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/largePadding">
+
+        <TextView
+            android:id="@+id/txt_toReg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="注册账号"
+            android:textColor="@color/blue"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_miss_pwd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="忘记密码"
+            android:textColor="@color/blue"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

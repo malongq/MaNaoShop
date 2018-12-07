@@ -32,7 +32,6 @@ public class MaNaoToolbar extends Toolbar {
     private TextView mTextTitle;
     private EditText mSearchView;
     private Button mRightButton;
-    private ImageView mImageView;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("RestrictedApi")

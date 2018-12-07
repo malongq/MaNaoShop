@@ -2,24 +2,33 @@
 <resources>
     <declare-styleable name="MaNaoTooBar">
 
-        <attr name="rightButtonIcon" format="reference"/>
-        <attr name="isShowSearchView" format="boolean"/>
-        <attr name="rightButtonText" format="reference"/>
+        <attr name="rightButtonIcon" format="reference" />
+        <attr name="isShowSearchView" format="boolean" />
+        <attr name="rightButtonText" format="reference" />
 
     </declare-styleable>
 
 
     <declare-styleable name="AddOrSub">
 
-        <attr name="btn_add_color" format="reference|color"/><!--增加按钮背景颜色-->
+        <attr name="btn_add_color" format="reference|color" /><!--增加按钮背景颜色-->
 
-        <attr name="tv_color" format="reference|color"/><!--购买数量背景颜色-->
-        <attr name="tv_num" format="reference|integer"/><!--购买数量默认值-->
-        <attr name="tv_min_num" format="reference|integer"/><!--购买数量最小值-->
-        <attr name="tv_max_num" format="reference|integer"/><!--购买数量最大值-->
+        <attr name="tv_color" format="reference|color" /><!--购买数量背景颜色-->
+        <attr name="tv_num" format="reference|integer" /><!--购买数量默认值-->
+        <attr name="tv_min_num" format="reference|integer" /><!--购买数量最小值-->
+        <attr name="tv_max_num" format="reference|integer" /><!--购买数量最大值-->
 
-        <attr name="btn_sub_color" format="reference|color"/><!--减少按钮背景颜色-->
+        <attr name="btn_sub_color" format="reference|color" /><!--减少按钮背景颜色-->
 
+    </declare-styleable>
+
+
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
     </declare-styleable>
 
 </resources>

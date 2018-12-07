@@ -33,6 +33,9 @@
 
         <!--热卖列表点击进入的h5页面-->
         <activity android:name=".activity.WaresActivity" />
+
+        <!--登录页面-->
+        <activity android:name=".activity.LoginActivity" />
     </application>
 
 </manifest>
