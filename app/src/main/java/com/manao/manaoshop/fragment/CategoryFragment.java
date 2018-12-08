@@ -30,6 +30,7 @@ import com.manao.manaoshop.http.BaseCallBack;
 import com.manao.manaoshop.http.ApiService;
 import com.manao.manaoshop.http.OkHttpHelper;
 import com.manao.manaoshop.http.SpotsCallBack;
+import com.manao.manaoshop.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -253,10 +254,17 @@ public class CategoryFragment extends Fragment {
 
             @Override
             public void onError(Response response, int code, Exception e) {
+                ToastUtils.show(getActivity(),"CategoryFragment"+e.getMessage());
             }
 
             @Override
             public void onResponse(Response response) {
+                ToastUtils.show(getActivity(),"CategoryFragment    onResponse");
+            }
+
+            @Override
+            public void onErrorToken(Response response, int code) {
+                ToastUtils.show(getActivity(),"CategoryFragment    onErrorToken"+code);
             }
         });
     }

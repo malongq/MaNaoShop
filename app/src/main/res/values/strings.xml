@@ -16,6 +16,7 @@
     <string name="my_addresses">收货地址</string>
     <string name="my_msg">我的信息</string>
     <string name="logout">退出登录</string>
+    <string name="token_error">TOKEN出错</string>
 
 
 </resources>

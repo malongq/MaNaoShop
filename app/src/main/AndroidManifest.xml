@@ -36,6 +36,9 @@
 
         <!--登录页面-->
         <activity android:name=".activity.LoginActivity" />
+
+        <!--订单详情页面-->
+        <activity android:name=".activity.NewOrderActivity" />
     </application>
 
 </manifest>

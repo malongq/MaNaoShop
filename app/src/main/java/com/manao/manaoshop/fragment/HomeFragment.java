@@ -134,6 +134,11 @@ public class HomeFragment extends Fragment {
             public void onResponse(Response response) {
                 Log.i(TAG, "onResponse: 马龙");
             }
+
+            @Override
+            public void onErrorToken(Response response, int code) {
+                Log.i(TAG, "onErrorToken: 马龙");
+            }
         });
 
         //造数据

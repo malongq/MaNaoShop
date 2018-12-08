@@ -2,7 +2,6 @@ package com.manao.manaoshop.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.MaNaoAppaplication;
 import com.manao.manaoshop.R;
+import com.manao.manaoshop.base.baseactivity.BaseActivity;
 import com.manao.manaoshop.bean.LoginRespMsg;
 import com.manao.manaoshop.bean.User;
 import com.manao.manaoshop.http.ApiService;
@@ -36,7 +36,7 @@ import okhttp3.Response;
  * 登录页面
  */
 @ContentView(R.layout.activity_login)
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     @ViewInject(R.id.manao_toobar)
     private MaNaoToolbar mToolBar;

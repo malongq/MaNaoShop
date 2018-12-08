@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.R;
+import com.manao.manaoshop.base.baseactivity.BaseActivity;
 import com.manao.manaoshop.bean.Wares;
 import com.manao.manaoshop.http.ApiService;
 import com.manao.manaoshop.utils.ShopCarProvider;
@@ -39,7 +39,7 @@ import dmax.dialog.SpotsDialog;
  * on 18/12/5.
  * 商品详情页面 H5
  */
-public class WaresActivity extends AppCompatActivity {
+public class WaresActivity extends BaseActivity {
 
     @ViewInject(R.id.manao_toobar)
     private MaNaoToolbar maNaoToolbar;

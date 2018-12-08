@@ -1,10 +1,10 @@
 package com.manao.manaoshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +13,23 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.manao.manaoshop.R;
+import com.manao.manaoshop.activity.NewOrderActivity;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
 import com.manao.manaoshop.adapter.ShopCarAdapter;
+import com.manao.manaoshop.base.basefragment.BaseFragment;
 import com.manao.manaoshop.bean.ShoppingCart;
+import com.manao.manaoshop.bean.User;
+import com.manao.manaoshop.http.ApiService;
+import com.manao.manaoshop.http.OkHttpHelper;
+import com.manao.manaoshop.http.SpotsCallBack;
 import com.manao.manaoshop.utils.ShopCarProvider;
 import com.manao.manaoshop.weiget.MaNaoToolbar;
 
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 import java.util.List;
+
+import okhttp3.Response;
 
 
 /**
@@ -30,7 +37,7 @@ import java.util.List;
  * on 18/11/5.
  * 购物车
  */
-public class CartFragment extends Fragment implements View.OnClickListener {
+public class CartFragment extends BaseFragment implements View.OnClickListener {
 
     @ViewInject(R.id.manao_toobar)
     private MaNaoToolbar mToolbar;
@@ -56,31 +63,16 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     public static final int ACTION_EDIT = 1;//编辑
     public static final int ACTION_CAMPLATE = 2;//完成
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_cart, container, false);
-
-        x.view().inject(this, view);//xUtils引入
-
-        initToolbar();//加载Toolbar
-
-        provider = new ShopCarProvider(getContext());//创建provider
-
-        //展示购物车数据
-        showData();
-
-        mBtnDel.setOnClickListener(this);//删除
-        mBtnOrder.setOnClickListener(this);//去结算
-
-        return view;
+    protected View CreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
     /**
      * 加载Toolbar
      */
-    private void initToolbar() {
+    @Override
+    public void initToolbar() {
         mToolbar.hideSearchView();
         mToolbar.showTitleView();
         mToolbar.setTitle(R.string.cart);
@@ -88,6 +80,17 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         mToolbar.setRightButtonText("编辑");
         mToolbar.getRightButton().setOnClickListener(this);
         mToolbar.getRightButton().setTag(ACTION_EDIT);
+    }
+
+    @Override
+    protected void init() {
+        provider = new ShopCarProvider(getContext());//创建provider
+
+        //展示购物车数据
+        showData();
+
+        mBtnDel.setOnClickListener(this);//删除
+        mBtnOrder.setOnClickListener(this);//去结算
     }
 
     /**
@@ -131,8 +134,33 @@ public class CartFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_del://删除
                 mAdapter.delCart();
                 break;
+            case R.id.btn_order://去结算
+                /**-----------------测试token没有了后，返回401，402，403，则直接调起登录页面------------------**/
+//                testToken();
+                Intent intent = new Intent(getActivity(), NewOrderActivity.class);
+                startActivity(intent,true);
+                break;
+
         }
     }
+
+    /**-----------------测试token没有了后，返回401，402，403，则直接调起登录页面------------------**/
+    private OkHttpHelper ok = OkHttpHelper.getInstance();
+    private void testToken() {
+        ok.get(ApiService.API.USER_DETAILS, new SpotsCallBack<User>(getActivity()) {
+
+            @Override
+            public void onSuccess(Response response, User user) {
+                Log.i("去结算", "onSuccess: ");
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+                Log.i("去结算", "onError: ");
+            }
+        });
+    }
+    /**-----------------测试token没有了后，返回401，402，403，则直接调起登录页面------------------**/
 
     /**
      * 点击右上角编辑   清除选中方法

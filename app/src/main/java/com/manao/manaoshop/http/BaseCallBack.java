@@ -39,4 +39,6 @@ public abstract class BaseCallBack<T> {
 
     public abstract void onResponse(Response response);//请求成功时调用此方法
 
+    public abstract void onErrorToken(Response response, int code);//请求token失败时调用此方法
+
 }

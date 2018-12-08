@@ -3,13 +3,11 @@ package com.manao.manaoshop.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
@@ -17,6 +15,7 @@ import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.R;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
 import com.manao.manaoshop.adapter.HotAdapterNew;
+import com.manao.manaoshop.base.baseactivity.BaseActivity;
 import com.manao.manaoshop.bean.Page;
 import com.manao.manaoshop.bean.Wares;
 import com.manao.manaoshop.http.ApiService;
@@ -34,7 +33,7 @@ import java.util.List;
  * on 18/12/3.
  * 首页商品列表点击进入的-- “商品列表” 页面
  */
-public class CommodityActivity extends AppCompatActivity implements PageUtIls.OnPageListener, TabLayout.OnTabSelectedListener,View.OnClickListener {
+public class CommodityActivity extends BaseActivity implements PageUtIls.OnPageListener, TabLayout.OnTabSelectedListener,View.OnClickListener {
 
 
     @ViewInject(R.id.manao_toobar)

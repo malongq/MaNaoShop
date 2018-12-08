@@ -2,11 +2,14 @@ package com.manao.manaoshop.http;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.manao.manaoshop.MaNaoAppaplication;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +27,9 @@ import okhttp3.Response;
 public class OkHttpHelper {
 
     private static final String TAG = "OkHttpHelper";
+    private static final int TOKEN_ERROE_ONE = 401;//TOKEN 出错
+    private static final int TOKEN_ERROE_TWO = 402;//TOKEN 过期
+    private static final int TOKEN_ERROE_THREE = 403;//TOKEN 丢失
     private static OkHttpHelper mInstance;
     private OkHttpClient mHttpClient;
     private Gson mGson;
@@ -75,25 +81,61 @@ public class OkHttpHelper {
     }
 
     /**
-     * GET 请求
+     * GET 请求  请求添加token后改装
+     *
+     * @param url
+     * @param callback
+     */
+    public void get(String url, Map<String, String> param, BaseCallBack callback) {
+        Log.i(TAG, "get: " + url);
+        Request request = buildGetRequest(url, param);
+        request(request, callback);
+    }
+
+    /**
+     * GET 请求  请求添加token后改装  重载上面方法
      *
      * @param url
      * @param callback
      */
     public void get(String url, BaseCallBack callback) {
-        Log.i(TAG, "get: "+url);
-        Request request = buildGetRequest(url);
-        request(request, callback);
+        get(url, null, callback);
     }
 
     /**
-     * GET
+     * GET  请求添加token后改装
      *
      * @param url
      * @return
      */
-    private Request buildGetRequest(String url) {
-        return buildRequest(url, HttpMethodType.GET, null);
+    private Request buildGetRequest(String url, Map<String, String> param) {
+        return buildRequest(url, HttpMethodType.GET, param);
+    }
+
+    //拼装url参数
+    private String buildUrlParams(String url, Map<String, String> param) {
+        if (param == null) {
+            param = new HashMap<>(1);
+        }
+        String token = MaNaoAppaplication.getInstance().getToken();
+        if (!TextUtils.isEmpty(token)) {
+            param.put("token", token);
+        }
+        StringBuffer sb = new StringBuffer();
+        for (Map.Entry<String, String> entry : param.entrySet()) {
+            sb.append(entry.getKey() + "=" + entry.getValue());
+            sb.append("&");
+        }
+        String s = sb.toString();
+        if (s.endsWith("&")) {
+            s = s.substring(0, s.length() - 1);
+        }
+        if (url.indexOf("?") > 0) {
+            url = url + "&" + s;
+        } else {
+            url = url + "?" + s;
+        }
+        return url;
     }
 
     /**
@@ -133,6 +175,8 @@ public class OkHttpHelper {
             RequestBody body = builderFormData(params);
             builder.post(body);
         } else if (methodType == HttpMethodType.GET) {
+            String s = buildUrlParams(url, params);
+            builder.url(s);
             builder.get();
         }
         return builder.build();
@@ -149,6 +193,12 @@ public class OkHttpHelper {
         if (params != null) {
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 builder.add(entry.getKey(), entry.getValue());
+            }
+
+            //添加token
+            String token = MaNaoAppaplication.getInstance().getToken();
+            if (!TextUtils.isEmpty(token)) {
+                builder.add("token", token);
             }
         }
         return builder.build();
@@ -196,12 +246,31 @@ public class OkHttpHelper {
                             Object obj = mGson.fromJson(resultStr, callback.type);
                             callbackSuccess(callback, response, obj);
                         } catch (com.google.gson.JsonParseException e) { // Json解析的错误
-                            callback.onError(response, response.code(), e);
+//                            callback.onError(response, response.code(), e);
+                            callbackError(callback, response, e);
                         }
                     }
+                } else if (response.code() == TOKEN_ERROE_ONE || response.code() == TOKEN_ERROE_TWO || response.code() == TOKEN_ERROE_THREE) {
+                    callbackTokenFailure(callback, response);
                 } else {
                     callbackError(callback, response, null);
                 }
+            }
+        });
+    }
+
+    /**
+     * token请求失败--在主线程更新UI
+     *
+     * @param callback
+     * @param response
+     */
+    private void callbackTokenFailure(final BaseCallBack callback, final Response response) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onErrorToken(response, response.code());
+                Log.i(TAG, "response: " + response.toString());
             }
         });
     }
@@ -218,7 +287,7 @@ public class OkHttpHelper {
             @Override
             public void run() {
                 callback.onSuccess(response, obj);
-                Log.i(TAG, "response: "+response.toString());
+                Log.i(TAG, "response: " + response.toString());
             }
         });
     }

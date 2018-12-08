@@ -28,6 +28,8 @@ public class ApiService {
         public static final String WARES_DETAIL = BASE_URL + "wares/detail.html";
         //登录
         public static final String LOGIN = BASE_URL + "auth/login";
+        //受保护的地址，可验证token
+        public static final String USER_DETAILS = BASE_URL + "user/get?id=1";
     }
 
 }
