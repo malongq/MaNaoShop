@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/gainsboro"
+    android:orientation="vertical">
+
+    <com.manao.manaoshop.weiget.MaNaoToolbar
+        android:id="@+id/manao_toobar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="40dp"
+        app:contentInsetEnd="10dp"
+        app:isShowSearchView="false"
+        app:navigationIcon="@drawable/icon_back_32px"
+        app:title="用户注册(2/2)"
+        app:titleTextColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/txtTip"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        android:textSize="12sp"
+        android:textColor="@color/colorPrimary"
+        tools:text="我们已发送验证码短信到这个号码：+86 188 8888 8888"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:orientation="horizontal"
+        android:layout_height="40dp">
+
+        <com.manao.manaoshop.weiget.LoginEditLayout
+            android:id="@+id/edittxt_code"
+            android:paddingRight="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:hint="请输入验证码"
+            android:textSize="14sp"
+            android:textColor="@color/result_view"
+            android:textColorHint="@color/backColor" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/btn_reSend"
+            android:padding="2dp"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:background="@color/springgreen"
+            android:text="52秒后可重新发送"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

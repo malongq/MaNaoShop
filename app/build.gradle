@@ -30,6 +30,9 @@ MobSDK {
 
         }
     }
+    SMSSDK {
+        gui false
+    }
 }
 
 android {

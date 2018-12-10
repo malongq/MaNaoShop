@@ -20,7 +20,8 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-#shareSDk混淆
+#shareSDk 和 smsSDK混淆
+-keep class cn.smssdk.**{*;}
 -keep class cn.sharesdk.**{*;}
 -keep class com.sina.**{*;}
 -keep class **.R$* {*;}

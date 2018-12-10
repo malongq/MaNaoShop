@@ -1,6 +1,7 @@
 package com.manao.manaoshop.fragment;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -254,17 +255,14 @@ public class CategoryFragment extends Fragment {
 
             @Override
             public void onError(Response response, int code, Exception e) {
-                ToastUtils.show(getActivity(),"CategoryFragment"+e.getMessage());
             }
 
             @Override
             public void onResponse(Response response) {
-                ToastUtils.show(getActivity(),"CategoryFragment    onResponse");
             }
 
             @Override
             public void onErrorToken(Response response, int code) {
-                ToastUtils.show(getActivity(),"CategoryFragment    onErrorToken"+code);
             }
         });
     }

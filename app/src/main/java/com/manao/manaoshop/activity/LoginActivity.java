@@ -1,5 +1,6 @@
 package com.manao.manaoshop.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -22,7 +23,6 @@ import com.manao.manaoshop.utils.ToastUtils;
 import com.manao.manaoshop.weiget.LoginEditLayout;
 import com.manao.manaoshop.weiget.MaNaoToolbar;
 
-import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -35,7 +35,6 @@ import okhttp3.Response;
  * on 18/12/6.
  * 登录页面
  */
-@ContentView(R.layout.activity_login)
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     @ViewInject(R.id.manao_toobar)
@@ -50,7 +49,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @ViewInject(R.id.btn_login)
     private Button mBtn_login;
 
-    @ViewInject(R.id.txt_toReg)//tv_miss_pwd
+    @ViewInject(R.id.txt_toReg)
     private TextView txt_toReg;
 
     @ViewInject(R.id.tv_miss_pwd)
@@ -62,8 +61,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login);
 
+        //引入xUtils
         x.view().inject(this);
 
         //加载ToolBar
@@ -73,6 +73,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         initView();
 
     }
+
+    //加载布局
+//    @Override
+//    public int initLayout() {
+//        return R.layout.activity_login;
+//    }
 
     //加载ToolBar
     private void initToolBar() {
@@ -91,14 +97,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         finish();
     }
 
-
     //加载布局
     private void initView() {
-
         mTv_phone.setOnClickListener(this);
         mTv_pwd.setOnClickListener(this);
         mBtn_login.setOnClickListener(this);
-
+        txt_toReg.setOnClickListener(this);
     }
 
     //点击事件
@@ -155,6 +159,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         Log.e("登录请求出错：", e.getMessage().toString().trim());
                     }
                 });
+                break;
+            case R.id.txt_toReg:
+                //点击注册账号：进入注册页面
+                Intent intent = new Intent(LoginActivity.this,RegisterOneActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
     }

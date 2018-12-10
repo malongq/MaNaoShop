@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
-import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.R;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
 import com.manao.manaoshop.adapter.HotAdapterNew;
@@ -34,7 +33,6 @@ import java.util.List;
  * 首页商品列表点击进入的-- “商品列表” 页面
  */
 public class CommodityActivity extends BaseActivity implements PageUtIls.OnPageListener, TabLayout.OnTabSelectedListener,View.OnClickListener {
-
 
     @ViewInject(R.id.manao_toobar)
     private MaNaoToolbar mMaNaoToolbar;
@@ -67,9 +65,8 @@ public class CommodityActivity extends BaseActivity implements PageUtIls.OnPageL
 
         setContentView(R.layout.commodity_activity);
 
+        //引入xUtils
         x.view().inject(this);
-
-        campaign_id = getIntent().getLongExtra(Constants.CAMPAIGN_ID, 0);
 
         //加载toolbar
         initToolbar();
@@ -81,6 +78,12 @@ public class CommodityActivity extends BaseActivity implements PageUtIls.OnPageL
         requestData();
 
     }
+
+    //加载布局
+//    @Override
+//    public int initLayout() {
+//        return R.layout.commodity_activity;
+//    }
 
     //加载toolbar
     private void initToolbar() {

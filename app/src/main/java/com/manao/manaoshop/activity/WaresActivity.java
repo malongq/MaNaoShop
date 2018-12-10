@@ -1,5 +1,6 @@
 package com.manao.manaoshop.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,7 +34,6 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 import dmax.dialog.SpotsDialog;
 
-
 /**
  * Created by Malong
  * on 18/12/5.
@@ -50,7 +50,7 @@ public class WaresActivity extends BaseActivity {
 
     private Wares wares;
     private ShopCarProvider provider;
-//    private SpotsDialog mDialog;
+    private AlertDialog mDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class WaresActivity extends BaseActivity {
 
         setContentView(R.layout.waresactivity);
 
+        //引入xUtils
         x.view().inject(this);
 
         Intent intent = getIntent();
@@ -67,8 +68,9 @@ public class WaresActivity extends BaseActivity {
         }
         wares = (Wares) data;
 
-//        mDialog = new SpotsDialog(this,"loading....");
-//        mDialog.show();
+        mDialog = new SpotsDialog.Builder().setContext(this).build();
+        mDialog.setMessage("加载中...");
+        mDialog.show();
 
         provider = new ShopCarProvider(this);
 
@@ -78,6 +80,12 @@ public class WaresActivity extends BaseActivity {
         //加载WebView
         initWebView();
     }
+
+    //加载布局
+//    @Override
+//    public int initLayout() {
+//        return R.layout.waresactivity;
+//    }
 
     //加载ToolBar
     private void initToolBar(final Context context) {
@@ -102,18 +110,6 @@ public class WaresActivity extends BaseActivity {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-        /*// title标题，微信、QQ和QQ空间等平台使用
-        oks.setTitle(getString(R.string.share));
-        // titleUrl QQ和QQ空间跳转链接
-        oks.setTitleUrl("https://github.com/malongq");
-        // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是分享文本");
-        //确保存在此张图片
-        oks.setImageUrl(wares.getImgUrl());
-        // url在微信、微博，Facebook等平台中使用
-        oks.setUrl("https://github.com/malongq");
-        // comment是我对这条分享的评论，仅在人人网使用
-        oks.setComment("我是玛瑙我是玛瑙我是玛瑙我是玛瑙");*/
         oks.setCallback(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
@@ -164,8 +160,6 @@ public class WaresActivity extends BaseActivity {
 //                    paramsToShare.setImageUrl(wares.getImgUrl());
                     String url = "https://hmls.hfbank.com.cn/hfapp-api/9.png";
                     paramsToShare.setImageUrl(url);
-//                    paramsToShare.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png");
-//                    paramsToShare.setImageUrl("https://img.cniao5.com/s_recommend_rBEhWlMFnG0IAAAAAAIqnbSuyAAAAIxLwJ57aQAAiq1705.jpg");
                 }
             }
         });
@@ -231,9 +225,9 @@ public class WaresActivity extends BaseActivity {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
 
-            //if (mDialog != null && mDialog.isShowing()){
-            //mDialog.dismiss();
-            //}
+            if (mDialog != null && mDialog.isShowing()) {
+                mDialog.dismiss();
+            }
 
             //调用h5方法--展示H5页面元素
             appInterface.showDetail();

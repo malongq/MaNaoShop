@@ -39,6 +39,12 @@
 
         <!--订单详情页面-->
         <activity android:name=".activity.NewOrderActivity" />
+
+        <!--注册页面1-->
+        <activity android:name=".activity.RegisterOneActivity" />
+
+        <!--注册页面2-->
+        <activity android:name=".activity.RegisterTwoActivity" />
     </application>
 
 </manifest>

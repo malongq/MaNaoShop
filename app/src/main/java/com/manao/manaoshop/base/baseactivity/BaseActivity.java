@@ -9,16 +9,25 @@ import com.manao.manaoshop.MaNaoAppaplication;
 import com.manao.manaoshop.activity.LoginActivity;
 import com.manao.manaoshop.bean.User;
 
+import org.xutils.x;
+
 /**
  * Created by Malong
  * on 18/12/8.
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        initLayout();
+
+
     }
+
+    //加载布局
+//    public abstract int initLayout();
 
     //登录拦截，如果需要登录则先登录，然后保存上一个页面的跳转意图，登陆后在进入要进入的页面
     public void startActivity(Intent intent, boolean isNeedLogin) {

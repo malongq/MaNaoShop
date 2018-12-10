@@ -17,6 +17,8 @@
     <string name="my_msg">我的信息</string>
     <string name="logout">退出登录</string>
     <string name="token_error">TOKEN出错</string>
+    <string name="smssdk_resend_identify_code">已经发送验证码</string>
+    <string name="smssdk_resend_identify_code2">重新发送验证码</string>
 
 
 </resources>

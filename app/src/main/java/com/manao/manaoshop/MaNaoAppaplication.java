@@ -28,7 +28,7 @@ public class MaNaoAppaplication extends Application {
         //xUtils加载
         x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);// 是否输出debug日志, 开启debug会影响性能
-        //shareSDK
+        //shareSDK  smsSDK
         MobSDK.init(this);
         mInstance = this;
         //获取用户信息

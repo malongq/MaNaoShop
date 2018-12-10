@@ -30,6 +30,8 @@ public class ApiService {
         public static final String LOGIN = BASE_URL + "auth/login";
         //受保护的地址，可验证token
         public static final String USER_DETAILS = BASE_URL + "user/get?id=1";
+        //注册
+        public static final String REGISTER = BASE_URL + "auth/reg";
     }
 
 }
