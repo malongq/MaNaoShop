@@ -123,12 +123,6 @@ public class RegisterTwoActivity extends BaseActivity {
         return builder.toString();
     }
 
-    //加载布局
-//    @Override
-//    public int initLayout() {
-//        return R.layout.activity_reg_two;
-//    }
-
     //加载toolbar
     private void initToolbar() {
         mMaNaoToolbar.setNavigationOnClickListener(new View.OnClickListener() {

@@ -84,4 +84,10 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'//没有使用特殊Header，可以不加这行
     implementation 'com.android.support:design:27.1.1'//版本随意（非必须，引用可以解决无法预览问题）
+    //ping++ 支付sdk依赖
+    implementation 'com.pingxx:pingpp-core:2.1.19' // (Ping++ 标准版 SDK) 必须添加
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' // 使用微信支付时添加,具体版本参考微信官方文档
+    implementation 'com.pingxx:pingpp-alipay:2.1.19' // 使用支付宝时添加
+    implementation 'com.pingxx:pingpp-upacp:2.1.19' // 使用银联支付时添加
+
 }

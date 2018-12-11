@@ -131,7 +131,11 @@
     <style name="ware_price">
         <item name="android:textColor">@color/crimson</item>
         <item name="android:textSize">22sp</item>
+    </style>
 
+    <style name="radioButton">
+        <item name="android:background">@drawable/selector_checkbox_green</item>
+        <item name="android:button">@null</item>
     </style>
 
 </resources>

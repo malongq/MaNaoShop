@@ -79,12 +79,6 @@ public class CommodityActivity extends BaseActivity implements PageUtIls.OnPageL
 
     }
 
-    //加载布局
-//    @Override
-//    public int initLayout() {
-//        return R.layout.commodity_activity;
-//    }
-
     //加载toolbar
     private void initToolbar() {
         mMaNaoToolbar.setNavigationOnClickListener(new View.OnClickListener() {

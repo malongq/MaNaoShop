@@ -32,6 +32,10 @@ public class ApiService {
         public static final String USER_DETAILS = BASE_URL + "user/get?id=1";
         //注册
         public static final String REGISTER = BASE_URL + "auth/reg";
+        //提交订单
+        public static final String ORDER_CREATE = BASE_URL + "/order/create";
+        //支付完成
+        public static final String ORDER_COMPLEPE = BASE_URL + "/order/complete";
     }
 
 }

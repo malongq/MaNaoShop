@@ -13,7 +13,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.manao.manaoshop.R;
-import com.manao.manaoshop.activity.NewOrderActivity;
+import com.manao.manaoshop.activity.CreateOrderActivity;
 import com.manao.manaoshop.adapter.DividerItemDecortionMl;
 import com.manao.manaoshop.adapter.ShopCarAdapter;
 import com.manao.manaoshop.base.basefragment.BaseFragment;
@@ -137,7 +137,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
             case R.id.btn_order://去结算
                 /**-----------------测试token没有了后，返回401，402，403，则直接调起登录页面------------------**/
 //                testToken();
-                Intent intent = new Intent(getActivity(), NewOrderActivity.class);
+                Intent intent = new Intent(getActivity(), CreateOrderActivity.class);
                 startActivity(intent,true);
                 break;
 

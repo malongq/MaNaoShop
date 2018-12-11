@@ -13,4 +13,5 @@ public class Constants {
     public static final String USER_JSON = "user_json";//用户
     public static final String TOKEN = "token";//token
     public static final int REQUEST_CODE = 1;//登录跳转返回值，必须大于等于0
+    public static final int REQUEST_CODE_PAYMENT = 1010;//提交订单跳转返回值，根据ping++设置的request设置的值设置，必须相等
 }

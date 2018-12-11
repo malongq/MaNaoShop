@@ -74,12 +74,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-    //加载布局
-//    @Override
-//    public int initLayout() {
-//        return R.layout.activity_login;
-//    }
-
     //加载ToolBar
     private void initToolBar() {
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {

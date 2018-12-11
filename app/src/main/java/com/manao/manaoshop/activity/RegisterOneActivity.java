@@ -150,12 +150,6 @@ public class RegisterOneActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    //加载布局
-//    @Override
-//    public int initLayout() {
-//        return R.layout.activity_reg_one;
-//    }
-
     //加载toolbar
     private void initToolbar() {
         mMaNaoToolbar.setNavigationOnClickListener(new View.OnClickListener() {

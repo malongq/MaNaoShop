@@ -81,12 +81,6 @@ public class WaresActivity extends BaseActivity {
         initWebView();
     }
 
-    //加载布局
-//    @Override
-//    public int initLayout() {
-//        return R.layout.waresactivity;
-//    }
-
     //加载ToolBar
     private void initToolBar(final Context context) {
         maNaoToolbar.setNavigationOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawee_view"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    app:viewAspectRatio="1">
+
+</com.facebook.drawee.view.SimpleDraweeView>
