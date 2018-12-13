@@ -37,11 +37,17 @@
         android:layout_marginTop="10dp" />
 
     <LinearLayout
-        android:id="@+id/iv_ngrid_layout"
+        android:id="@+id/iv_ngrid_layout1"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp" />
+
+    <com.w4lle.library.NineGridlayout
+        android:layout_marginTop="8dp"
+        android:id="@+id/iv_ngrid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <View
         style="@style/line_vertical"

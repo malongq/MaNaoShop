@@ -14,10 +14,15 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.manao.manaoshop.Constants;
+import com.manao.manaoshop.MaNaoAppaplication;
 import com.manao.manaoshop.R;
 import com.manao.manaoshop.base.baseactivity.BaseActivity;
+import com.manao.manaoshop.bean.Favorites;
+import com.manao.manaoshop.bean.User;
 import com.manao.manaoshop.bean.Wares;
 import com.manao.manaoshop.http.ApiService;
+import com.manao.manaoshop.http.OkHttpHelper;
+import com.manao.manaoshop.http.SpotsCallBack;
 import com.manao.manaoshop.utils.ShopCarProvider;
 import com.manao.manaoshop.utils.ToastUtils;
 import com.manao.manaoshop.weiget.MaNaoToolbar;
@@ -27,12 +32,15 @@ import org.xutils.x;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.ShareContentCustomizeCallback;
 import dmax.dialog.SpotsDialog;
+import okhttp3.Response;
 
 /**
  * Created by Malong
@@ -51,6 +59,7 @@ public class WaresActivity extends BaseActivity {
     private Wares wares;
     private ShopCarProvider provider;
     private AlertDialog mDialog;
+    private OkHttpHelper okHttpHelper = OkHttpHelper.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -206,7 +215,7 @@ public class WaresActivity extends BaseActivity {
         //调用Android方法
         @JavascriptInterface
         public void addFavorites(long id) {
-            ToastUtils.show(mContext, "收藏");
+            addToFavorite();
         }
 
     }
@@ -227,5 +236,31 @@ public class WaresActivity extends BaseActivity {
             appInterface.showDetail();
         }
     }
+
+    //收藏方法
+    private void addToFavorite(){
+
+        User user = MaNaoAppaplication.getInstance().getUser();
+        if(user==null){
+            startActivity(new Intent(this,LoginActivity.class),true);
+        }
+        Long userId = MaNaoAppaplication.getInstance().getUser().getId();
+        Map<String, Object> params = new HashMap<>();
+        params.put("user_id",userId);
+        params.put("ware_id",wares.getId());
+        okHttpHelper.post(ApiService.API.FAVORITE_CREATE, params, new SpotsCallBack<List<Favorites>>(this) {
+            @Override
+            public void onSuccess(Response response, List<Favorites> favorites) {
+                ToastUtils.show(WaresActivity.this,"已添加到收藏夹");
+            }
+
+            @Override
+            public void onError(Response response, int code, Exception e) {
+                Log.i("收藏","code:"+code);
+            }
+        });
+
+    }
+
 
 }

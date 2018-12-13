@@ -2,16 +2,23 @@ package com.manao.manaoshop.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.manao.manaoshop.R;
+import com.manao.manaoshop.base.baseadapter.BaseAdapter;
 import com.manao.manaoshop.base.baseadapter.BaseViewHolder;
 import com.manao.manaoshop.base.baseadapter.SimpleAdapter;
 import com.manao.manaoshop.bean.Order;
+import com.manao.manaoshop.bean.OrderItem;
+import com.squareup.picasso.Picasso;
+import com.w4lle.library.NineGridAdapter;
+import com.w4lle.library.NineGridlayout;
 
 import java.util.List;
 
@@ -51,17 +58,66 @@ public class MyOrderAdapter extends SimpleAdapter<Order> {
                 break;
         }
 
+        NineGridlayout nineGridlayout = (NineGridlayout) viewHoder.getView(R.id.iv_ngrid_layout);
+        nineGridlayout.setGap(5);
+        nineGridlayout.setDefaultWidth(50);
+        nineGridlayout.setDefaultHeight(50);
+        nineGridlayout.setAdapter(new OrderItemAdapter(mContext, orders.getItems()));
+
         //动态布局添加UI
-        LinearLayout ll = (LinearLayout) viewHoder.getView(R.id.iv_ngrid_layout);
-        ll.removeAllViews();
-        LinearLayout inflate = (LinearLayout) View.inflate(mContext,R.layout.template_order, null);
-        LinearLayout.LayoutParams relLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        inflate.setLayoutParams(relLayoutParams);
-        SimpleDraweeView simpleDraweeView = inflate.findViewById(R.id.drawee_view);
-        simpleDraweeView.setImageURI(orders.getItems().get(0).getWares().getImgUrl());
-        ll.addView(inflate);
+//        LinearLayout ll = (LinearLayout) viewHoder.getView(R.id.iv_ngrid_layout1);
+//        ll.removeAllViews();
+//        LinearLayout inflate = (LinearLayout) View.inflate(mContext,R.layout.template_order, null);
+//        LinearLayout.LayoutParams relLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        inflate.setLayoutParams(relLayoutParams);
+//        SimpleDraweeView simpleDraweeView = inflate.findViewById(R.id.drawee_view);
+//        simpleDraweeView.setImageURI(orders.getItems().get(0).getWares().getImgUrl());
+//        ll.addView(inflate);
 
     }
 
+    //9宫格实现的adapter
+    class OrderItemAdapter extends NineGridAdapter {
+
+        private List<OrderItem> items;
+
+        public OrderItemAdapter(Context context, List<OrderItem> items) {
+            super(context, items);
+            this.items = items;
+        }
+
+        @Override
+        public int getCount() {
+            return (items == null) ? 0 : items.size();
+        }
+
+        @Override
+        public String getUrl(int position) {
+            OrderItem item = getItem(position);
+            return item.getWares().getImgUrl();
+
+        }
+
+        @Override
+        public OrderItem getItem(int position) {
+            return (items == null) ? null : items.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            OrderItem item = getItem(position);
+            return item == null ? 0 : item.getId();
+        }
+
+        @Override
+        public View getView(int i, View view) {
+            ImageView iv = new ImageView(context);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            iv.setBackgroundColor(Color.parseColor("#f5f5f5"));
+            Picasso.with(context).load(getUrl(i)).placeholder(new ColorDrawable(Color.parseColor("#f5f5f5"))).into(iv);
+            return iv;
+        }
+
+    }
 
 }

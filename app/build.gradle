@@ -91,5 +91,7 @@ dependencies {
     implementation 'com.pingxx:pingpp-upacp:2.1.19' // 使用银联支付时添加
     //省市县三级联动
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    //微信9宫格
+    implementation 'com.w4lle.library:NineLayout:1.0.0'
 
 }
