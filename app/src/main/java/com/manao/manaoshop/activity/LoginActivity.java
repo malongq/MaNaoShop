@@ -123,7 +123,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
 
-                HashMap<String, String> mapParmers = new HashMap<>(2);
+                HashMap<String, Object> mapParmers = new HashMap<>(2);
                 mapParmers.put("phone", phone);
                 mapParmers.put("password", DESUtil.encode(Constants.DES_KEY, pwd));
 

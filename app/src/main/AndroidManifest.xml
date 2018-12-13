@@ -96,6 +96,12 @@
         <!--支付结果页面-->
         <activity android:name=".activity.PayResultActivity" />
 
+        <!--收货地址页面-->
+        <activity android:name=".activity.AddressListActivity" />
+
+        <!--新增收货地址页面-->
+        <activity android:name=".activity.AddressAddActivity" />
+
     </application>
 
 </manifest>

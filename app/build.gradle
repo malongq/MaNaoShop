@@ -89,5 +89,7 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' // 使用微信支付时添加,具体版本参考微信官方文档
     implementation 'com.pingxx:pingpp-alipay:2.1.19' // 使用支付宝时添加
     implementation 'com.pingxx:pingpp-upacp:2.1.19' // 使用银联支付时添加
+    //省市县三级联动
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
 
 }

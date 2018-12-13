@@ -36,6 +36,20 @@ public class ApiService {
         public static final String ORDER_CREATE = BASE_URL + "/order/create";
         //支付完成
         public static final String ORDER_COMPLEPE = BASE_URL + "/order/complete";
+        //收货地址列表
+        public static final String ADDRESS_LIST = BASE_URL + "addr/list";
+        //新增收货地址
+        public static final String ADDRESS_CREATE = BASE_URL + "addr/create";
+        //更新收货地址
+        public static final String ADDRESS_UPDATE = BASE_URL + "addr/update";
+        //删除收货地址
+        public static final String ADDRESS_DELETE = BASE_URL + "addr/del";
+        //加入收藏夹
+        public static final String FAVORITE_CREATE = BASE_URL + "favorite/create";
+        //收藏列表
+        public static final String FAVORITE_LIST = BASE_URL + "favorite/list";
+        //删除收藏夹
+        public static final String FAVORITE_DEL = BASE_URL + "favorite/del";
     }
 
 }

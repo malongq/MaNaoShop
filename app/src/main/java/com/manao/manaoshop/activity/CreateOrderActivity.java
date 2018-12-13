@@ -217,7 +217,7 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
 
         String json = JSONUtils.toJSON(items);//将其转换为string
 
-        HashMap<String, String> params = new HashMap<>(5);//初始化参数
+        HashMap<String, Object> params = new HashMap<>(5);//初始化参数
         params.put("user_id", MaNaoAppaplication.getInstance().getUser().getId() + "");
         params.put("item_json", json);
         params.put("pay_channel", payChannel);
@@ -291,7 +291,7 @@ public class CreateOrderActivity extends BaseActivity implements View.OnClickLis
     //处理不同返回值得函数
     private void changeOrderStatus(final int status) {
 
-        Map<String, String> params = new HashMap<>(5);
+        Map<String, Object> params = new HashMap<>(5);
         params.put("order_num", orderNum);
         params.put("status", status + "");
 

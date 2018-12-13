@@ -194,7 +194,7 @@ public class RegisterTwoActivity extends BaseActivity {
 
     //提交注册
     private void doReg() {
-        Map<String, String> params = new HashMap<>(2);
+        Map<String, Object> params = new HashMap<>(2);
         params.put("phone", phone);
         params.put("password", DESUtil.encode(Constants.DES_KEY, pwd));
         okHttpHelper.post(ApiService.API.REGISTER, params, new SpotsCallBack<LoginRespMsg<User>>(this) {

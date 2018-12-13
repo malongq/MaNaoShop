@@ -2,35 +2,29 @@ package com.manao.manaoshop.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.manao.manaoshop.Constants;
 import com.manao.manaoshop.MaNaoAppaplication;
 import com.manao.manaoshop.R;
+import com.manao.manaoshop.activity.AddressListActivity;
 import com.manao.manaoshop.activity.LoginActivity;
+import com.manao.manaoshop.base.basefragment.BaseFragment;
 import com.manao.manaoshop.bean.User;
 import com.manao.manaoshop.weiget.CircleImageView;
 import com.squareup.picasso.Picasso;
-
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
-
 
 /**
  * Created by Malong
  * on 18/11/5.
  * 我的
  */
-public class MineFragment extends Fragment implements View.OnClickListener {
+public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     @ViewInject(R.id.img_head)
     private CircleImageView mImageHead;
@@ -41,21 +35,22 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @ViewInject(R.id.btn_logout)
     private Button mbtnLogout;
 
-    @Nullable
+    @ViewInject(R.id.tv_address)
+    private TextView mTv_address;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_mine, container, false);
+    protected View CreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_mine, container, false);
+    }
 
-        x.view().inject(this, view);
-
-        //加载布局
-        initView();
-
+    @Override
+    protected void init() {
         mImageHead.setOnClickListener(this);
         mTxtUserName.setOnClickListener(this);
         mbtnLogout.setOnClickListener(this);
-
-        return view;
+        mTv_address.setOnClickListener(this);
+        //加载布局
+        initView();
     }
 
     //加载布局
@@ -105,6 +100,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 //退出登录清空信息，并更新页面
                 MaNaoAppaplication.getInstance().clearUser();
                 showUser(null);
+                break;
+            case R.id.tv_address://收货地址页面
+                Intent intent = new Intent(getActivity(), AddressListActivity.class);
+                startActivity(intent,true);
                 break;
         }
     }

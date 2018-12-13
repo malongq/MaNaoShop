@@ -86,7 +86,7 @@ public class OkHttpHelper {
      * @param url
      * @param callback
      */
-    public void get(String url, Map<String, String> param, BaseCallBack callback) {
+    public void get(String url, Map<String, Object> param, BaseCallBack callback) {
         Log.i(TAG, "get: " + url);
         Request request = buildGetRequest(url, param);
         request(request, callback);
@@ -108,12 +108,12 @@ public class OkHttpHelper {
      * @param url
      * @return
      */
-    private Request buildGetRequest(String url, Map<String, String> param) {
+    private Request buildGetRequest(String url, Map<String, Object> param) {
         return buildRequest(url, HttpMethodType.GET, param);
     }
 
     //拼装url参数
-    private String buildUrlParams(String url, Map<String, String> param) {
+    private String buildUrlParams(String url, Map<String, Object> param) {
         if (param == null) {
             param = new HashMap<>(1);
         }
@@ -122,7 +122,7 @@ public class OkHttpHelper {
             param.put("token", token);
         }
         StringBuffer sb = new StringBuffer();
-        for (Map.Entry<String, String> entry : param.entrySet()) {
+        for (Map.Entry<String, Object> entry : param.entrySet()) {
             sb.append(entry.getKey() + "=" + entry.getValue());
             sb.append("&");
         }
@@ -145,7 +145,8 @@ public class OkHttpHelper {
      * @param param
      * @param callback
      */
-    public void post(String url, Map<String, String> param, BaseCallBack callback) {
+    public void post(String url, Map<String, Object> param, BaseCallBack callback) {
+        Log.i(TAG, "post: " + url);
         Request request = buildPostRequest(url, param);
         request(request, callback);
     }
@@ -157,7 +158,7 @@ public class OkHttpHelper {
      * @param params
      * @return
      */
-    private Request buildPostRequest(String url, Map<String, String> params) {
+    private Request buildPostRequest(String url, Map<String, Object> params) {
         return buildRequest(url, HttpMethodType.POST, params);
     }
 
@@ -169,7 +170,7 @@ public class OkHttpHelper {
      * @param params
      * @return
      */
-    private Request buildRequest(String url, HttpMethodType methodType, Map<String, String> params) {
+    private Request buildRequest(String url, HttpMethodType methodType, Map<String, Object> params) {
         Request.Builder builder = new Request.Builder().url(url);
         if (methodType == HttpMethodType.POST) {
             RequestBody body = builderFormData(params);
@@ -188,11 +189,11 @@ public class OkHttpHelper {
      * @param params
      * @return
      */
-    private RequestBody builderFormData(Map<String, String> params) {
+    private RequestBody builderFormData(Map<String, Object> params) {
         FormBody.Builder builder = new FormBody.Builder();
         if (params != null) {
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                builder.add(entry.getKey(), entry.getValue());
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue().toString());
             }
 
             //添加token
@@ -306,5 +307,35 @@ public class OkHttpHelper {
             }
         });
     }
+
+    /**
+     * 请求失败--在主线程更新UI
+     *
+     * @param callback
+     */
+    private void callbackFailure(final BaseCallBack callback, final Request request, final IOException e) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onFailure(request, e);
+            }
+        });
+    }
+
+    /**
+     * 请求成功--在主线程更新UI
+     *
+     * @param callback
+     * @param response
+     */
+    private void callbackResponse(final  BaseCallBack callback , final Response response ){
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                callback.onResponse(response);
+            }
+        });
+    }
+
 
 }
