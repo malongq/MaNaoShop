@@ -13,6 +13,8 @@ import com.manao.manaoshop.MaNaoAppaplication;
 import com.manao.manaoshop.R;
 import com.manao.manaoshop.activity.AddressListActivity;
 import com.manao.manaoshop.activity.LoginActivity;
+import com.manao.manaoshop.activity.MyFavoriteActivity;
+import com.manao.manaoshop.activity.MyOrderActivity;
 import com.manao.manaoshop.base.basefragment.BaseFragment;
 import com.manao.manaoshop.bean.User;
 import com.manao.manaoshop.weiget.CircleImageView;
@@ -35,6 +37,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @ViewInject(R.id.btn_logout)
     private Button mbtnLogout;
 
+    @ViewInject(R.id.txt_my_orders)
+    private TextView mTxt_my_orders;
+
+    @ViewInject(R.id.tv_favorite)
+    private TextView mTv_favorite;
+
     @ViewInject(R.id.tv_address)
     private TextView mTv_address;
 
@@ -48,6 +56,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         mImageHead.setOnClickListener(this);
         mTxtUserName.setOnClickListener(this);
         mbtnLogout.setOnClickListener(this);
+        mTxt_my_orders.setOnClickListener(this);
+        mTv_favorite.setOnClickListener(this);
         mTv_address.setOnClickListener(this);
         //加载布局
         initView();
@@ -101,9 +111,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 MaNaoAppaplication.getInstance().clearUser();
                 showUser(null);
                 break;
+            case R.id.txt_my_orders://我的订单页面
+                Intent intent_orders = new Intent(getActivity(), MyOrderActivity.class);
+                startActivity(intent_orders,true);
+                break;
+            case R.id.tv_favorite://我的收藏页面
+                Intent intent_favorite = new Intent(getActivity(), MyFavoriteActivity.class);
+                startActivity(intent_favorite,true);
+                break;
             case R.id.tv_address://收货地址页面
-                Intent intent = new Intent(getActivity(), AddressListActivity.class);
-                startActivity(intent,true);
+                Intent intent_address = new Intent(getActivity(), AddressListActivity.class);
+                startActivity(intent_address,true);
                 break;
         }
     }

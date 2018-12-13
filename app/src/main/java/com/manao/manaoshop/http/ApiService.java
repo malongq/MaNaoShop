@@ -36,6 +36,8 @@ public class ApiService {
         public static final String ORDER_CREATE = BASE_URL + "/order/create";
         //支付完成
         public static final String ORDER_COMPLEPE = BASE_URL + "/order/complete";
+        //我的订单页面
+        public static final String ORDER_LIST = BASE_URL + "order/list";
         //收货地址列表
         public static final String ADDRESS_LIST = BASE_URL + "addr/list";
         //新增收货地址

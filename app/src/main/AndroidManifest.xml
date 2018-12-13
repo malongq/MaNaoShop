@@ -102,6 +102,15 @@
         <!--新增收货地址页面-->
         <activity android:name=".activity.AddressAddActivity" />
 
+        <!--我的订单页面-->
+        <activity android:name=".activity.MyOrderActivity" />
+
+        <!--我的订单详情页面-->
+        <activity android:name=".activity.OrderDetailActivity" />
+
+        <!--我的收藏页面-->
+        <activity android:name=".activity.MyFavoriteActivity" />
+
     </application>
 
 </manifest>
